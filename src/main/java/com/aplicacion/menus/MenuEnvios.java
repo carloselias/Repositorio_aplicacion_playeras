@@ -22,11 +22,14 @@ public class MenuEnvios {
             System.out.println("1. Listar empresas");
             System.out.println("2. Insertar empresa");
             System.out.println("3. Actualizar empresa");
-            System.out.println("4. Salir");
+            System.out.println("4. Buscar envio");
+            System.out.println("5. Listar envios");
+
+            System.out.println("0. Salir");
 
             opcion = Integer.parseInt(sc.nextLine());
 
-            switch(opcion){
+            switch(opcion) {
 
                 // ==================================
                 // LISTAR
@@ -126,7 +129,109 @@ public class MenuEnvios {
 
                     break;
 
+                // ==================================
+                // BUSCAR ENVIO
+                // ==================================
                 case 4:
+
+                    System.out.print("Ingrese ID envio: ");
+
+                    int idBuscar =
+                            Integer.parseInt(sc.nextLine());
+
+                    dao.buscarEnvioPorId(idBuscar);
+
+                    break;
+
+                // ==================================
+                // LISTAR ENVIOS
+                // ==================================
+                case 5:
+
+                    dao.listarEnvios();
+
+                    break;
+
+                // ==================================
+                // INSERTAR ENVIO PRODUCTO
+                // ==================================
+                case 6:
+
+                    System.out.print("ID envio: ");
+
+                    int idEnvio =
+                            Integer.parseInt(sc.nextLine());
+
+                    System.out.print("ID factura: ");
+
+                    int idFactura =
+                            Integer.parseInt(sc.nextLine());
+
+                    // Mostrar empresas repartidoras
+                    dao.listarEmpresasRepartidorasCompacto();
+
+                    System.out.print(
+                            "\nID empresa repartidora: "
+                    );
+
+                    int idEmpresa =
+                            Integer.parseInt(sc.nextLine());
+
+                    dao.insertarEnvioProducto(
+                            idEnvio,
+                            idFactura,
+                            idEmpresa
+                    );
+
+                    break;
+
+                // ==================================
+                // INSERTAR DETALLE ENVIO
+                // ==================================
+                case 7:
+
+                    System.out.print("ID envio: ");
+
+                    int idEnvioDetalle =
+                            Integer.parseInt(sc.nextLine());
+
+                    System.out.print(
+                            "ID detalle factura: "
+                    );
+
+                    int idDetalleFactura =
+                            Integer.parseInt(sc.nextLine());
+
+                    dao.insertarDetalleEnvio(
+                            idEnvioDetalle,
+                            idDetalleFactura
+                    );
+
+                    break;
+
+                // ==================================
+                // ACTUALIZAR ESTADO ENVIO
+                // ==================================
+                case 8:
+
+                    System.out.print("ID envio: ");
+
+                    int idActualizarEnvio =
+                            Integer.parseInt(sc.nextLine());
+
+                    System.out.print("Nuevo estado: ");
+
+                    String estado =
+                            sc.nextLine();
+
+                    dao.actualizarEstadoEnvio(
+                            idActualizarEnvio,
+                            estado
+                    );
+
+                    break;
+
+                case 0:
 
                     System.out.println("Fin");
 
