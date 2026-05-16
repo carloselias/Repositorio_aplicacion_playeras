@@ -34,22 +34,19 @@ public class InventarioMateriaDAO {
                 System.out.println("ID unidad de medida: "
                         + rs.getInt("id_unidad_m"));
 
-                System.out.println("Telefono: "
-                        + rs.getString("telefono"));
+                System.out.println("Nombre: "
+                        + rs.getString("nombre"));
 
-                System.out.println("Email: "
-                        + rs.getString("email"));
+                System.out.println("Costo Unitario: "
+                        + rs.getFloat("costo_unitario"));
 
-                System.out.println("Direccion: "
-                        + rs.getString("direccion"));
-
-                System.out.println("Activo: "
-                        + rs.getBigDecimal("activo"));
+                System.out.println("Stock: "
+                        + rs.getInt("stock_actual"));
             }
 
         } catch (Exception e) {
 
-            System.out.println("Error al proveedores ");
+            System.out.println("Error al listar inventario de materia prima");
             e.printStackTrace();
 
         } finally {
@@ -61,22 +58,21 @@ public class InventarioMateriaDAO {
     }
 
     // =========================================
-    // INSERTAR EMPRESA
+    // INSERTAR MATERIA PRIMA
     // =========================================
-    public void insertarProveedores(
-            int id_proveedor,
+    public void insertarMateria(
+            int id_materia,
+            int id_unidad_m,
             String nombre,
-            String telefono,
-            String email,
-            String direccion,
-            int activo
+            float costo_unitario,
+            int stock
     ) {
 
         Connection con = null;
         PreparedStatement ps = null;
 
         String sql =
-                "{CALL sp_InsertarProveedor(?, ?, ?, ?, ?, ?)}";
+                "{CALL sp_InsertarMateriaInv(?, ?, ?, ?, ?)}";
 
         try {
 
@@ -84,18 +80,17 @@ public class InventarioMateriaDAO {
 
             ps = con.prepareCall(sql);
 
-            ps.setInt(1, id_proveedor);
-            ps.setString(2, nombre);
-            ps.setString(3, telefono);
-            ps.setString(4, email);
-            ps.setString(5, direccion);
-            ps.setInt(6, activo);
+            ps.setInt(1, id_materia);
+            ps.setInt(2, id_unidad_m);
+            ps.setString(3, nombre);
+            ps.setFloat(4, costo_unitario);
+            ps.setInt(5, stock);
 
             boolean resultado = ps.execute();
 
             if(!resultado) {
 
-                System.out.println("Proveedor insertado");
+                System.out.println("Materia prima insertada");
 
             } else {
 
@@ -116,22 +111,19 @@ public class InventarioMateriaDAO {
     }
 
     // =========================================
-    // ACTUALIZAR PROVEEDOR
+    // ACTUALIZAR MATERIA PRIMA
     // =========================================
-    public void actualizarProveedor(
-            int id_proveedor,
-            String nombre,
-            String telefono,
-            String email,
-            String direccion,
-            String activo //no es string pero para que pueda ser vacio
+    public void actualizarMateria(
+            int id_materia,
+            float costo_unitario,
+            int stock
     ) {
 
         Connection con = null;
         PreparedStatement ps = null;
 
         String sql =
-                "{CALL sp_ActualizarProveedor(?, ?, ?, ?, ?, ?)}";
+                "{CALL sp_ActualizarMateriaInv(?, ?, ?)}";
 
         try {
 
@@ -140,46 +132,15 @@ public class InventarioMateriaDAO {
             ps = con.prepareCall(sql);
 
             // ID obligatorio
-            ps.setInt(1, id_proveedor);
-
-            // Campos opcionales
-            if(nombre == null || nombre.isBlank()){
-                ps.setNull(2, Types.VARCHAR);
-            } else {
-                ps.setString(2, nombre);
-            }
-
-            if(telefono == null || telefono.isBlank()){
-                ps.setNull(3, Types.VARCHAR);
-            } else {
-                ps.setString(3, telefono);
-            }
-
-            if(email == null || email.isBlank()){
-                ps.setNull(4, Types.VARCHAR);
-            } else {
-                ps.setString(4, email);
-            }
-
-            if(direccion == null || direccion.isBlank()){
-                ps.setNull(5, Types.VARCHAR);
-            } else {
-                ps.setString(5, direccion);
-            }
-
-            if(activo.equals("1") || activo.equals("0")){
-                int temp = Integer.parseInt(activo);
-                ps.setInt(6, temp);
-            } else {
-                ps.setNull(6, Types.INTEGER);
-
-            }
+            ps.setInt(1, id_materia);
+            ps.setFloat(2, costo_unitario);
+            ps.setInt(3, stock);
 
             boolean resultado = ps.execute();
 
             if(!resultado){
 
-                System.out.println("Proveedor actualizado");
+                System.out.println("Materia prima actualizada");
 
             } else {
 
@@ -188,7 +149,7 @@ public class InventarioMateriaDAO {
 
         } catch (Exception e) {
 
-            System.out.println("Error al actualizar proveedor");
+            System.out.println("Error al actualizar materia prima");
             e.printStackTrace();
 
         } finally {
