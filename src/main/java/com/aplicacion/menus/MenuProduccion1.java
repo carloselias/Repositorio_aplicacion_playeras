@@ -1,15 +1,14 @@
 package com.aplicacion.menus;
 
 import com.aplicacion.dao.ProveedoresDAO;
-import com.aplicacion.dao.ComprasDAO;
 
 import java.util.Scanner;
 
-public class MenuCompras {
+public class MenuProduccion1 {
     Scanner sc = new Scanner(System.in);
 
     ProveedoresDAO dao = new ProveedoresDAO();
-    ComprasDAO dao2 = new ComprasDAO();
+
     public void menu() {
 
         int opcion;
@@ -24,8 +23,7 @@ public class MenuCompras {
             System.out.println("COMPRAS ");
             System.out.println("4. Listar compras");
             System.out.println("5. Insertar compra");
-            System.out.println("6. Marcar compra como entregada");
-            System.out.println("7. Insertar detalle compra");
+            System.out.println("6. Insertar detalle compra");
             System.out.println("0. Salir");
 
             opcion = Integer.parseInt(sc.nextLine());
@@ -46,7 +44,7 @@ public class MenuCompras {
                 // ==================================
                 case 2:
 
-                    System.out.print("\nCodigo nuevo proveedor: ");
+                    System.out.print("ID: ");
                     int id = Integer.parseInt(sc.nextLine());
 
                     System.out.print("Nombre: ");
@@ -80,13 +78,13 @@ public class MenuCompras {
                 // ==================================
                 case 3:
 
-                    System.out.print("\nCodigo proveedor a actualizar: ");
+                    System.out.print("ID proveedor a actualizar: ");
                     int idActualizar;
                     try{
                         idActualizar =
                                 Integer.parseInt(sc.nextLine());
                     }catch(Exception e){
-                        System.out.print("El ID no es valido.");
+                        System.out.print("El ID no es valido");
                         break;
                     }
 
@@ -118,77 +116,13 @@ public class MenuCompras {
                     break;
 
                 case 4:
-                    dao2.listarCompras();
-                    break;
 
-                case 5:
-
-                    System.out.print("\nCodigo compra: ");
-                    int nuevoid_compra = Integer.parseInt(sc.nextLine());
-
-                    System.out.print("Codigo proveedor: ");
-                    int nuevoid_proveedor = Integer.parseInt(sc.nextLine());
-
-
-
-                    dao2.insertarCompra(
-                            nuevoid_compra,
-                            nuevoid_proveedor
-
-                    );
+                    System.out.println("Fin");
 
                     break;
-
-                case 6:
-                    System.out.print("\nCodigo compra a marcar: ");
-                    int compramarcar = Integer.parseInt(sc.nextLine());
-
-                    dao2.entregarCompra(
-                            compramarcar
-
-                    );
-
-                    break;
-
-
-                case 7:
-
-                    System.out.print("\nCodigo detalle compra: ");
-                    int detalle_compra = Integer.parseInt(sc.nextLine());
-
-                    System.out.print("\nCodigo compra: ");
-                    int idcomprad = Integer.parseInt(sc.nextLine());
-
-
-                    System.out.print("Codigo material adquirido: ");
-                    int id_material = Integer.parseInt(sc.nextLine());
-
-                    System.out.print("Cantidad material: ");
-                    int cantidad = Integer.parseInt(sc.nextLine());
-
-                    System.out.print("Precio individual de material: ");
-                    int precio = Integer.parseInt(sc.nextLine());
-
-
-                    dao2.insertarDetalleCompra(
-                            detalle_compra,
-                            idcomprad,
-                            id_material,
-                            cantidad,
-                            precio
-                    );
-
-                    break;
-
-                case 0:
-
-                System.out.println("Fin");
-
-                break;
             }
 
-        } while(opcion != 0);
+        } while(opcion != 4);
     }
-
 
 }
