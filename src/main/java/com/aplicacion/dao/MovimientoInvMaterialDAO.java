@@ -4,7 +4,7 @@ import com.aplicacion.conexion.ConexionBD;
 
 import java.sql.*;
 
-public class MovimientoInvMaterial {
+public class MovimientoInvMaterialDAO {
 
     // =========================================
     // LISTAR MOVIMIENTOS DE INVENTARIO DE MATERIA PRIMA
