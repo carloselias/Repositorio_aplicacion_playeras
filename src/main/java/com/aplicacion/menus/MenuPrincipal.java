@@ -27,6 +27,7 @@ public class MenuPrincipal {
             System.out.println("10. Envíos");
             System.out.println("11. Empleados");
             System.out.println("12. Usuarios");
+            System.out.println("13. AUDITORIA");
             System.out.println("0. Salir");
             System.out.print("Opcion: ");
 
