@@ -66,7 +66,7 @@ public class EnviosDAO {
         } catch (Exception e) {
 
             System.out.println("Error al listar empresas");
-            e.printStackTrace();
+            e.getMessage();
 
         } finally {
 
@@ -79,18 +79,7 @@ public class EnviosDAO {
     // =========================================
     // INSERTAR EMPRESA
     // =========================================
-    public void insertarEmpresaRepartidora(
-            int idEmpresa,
-            String nombre,
-            String telefono,
-            String email,
-            String direccion,
-            BigDecimal cobroEnvio,
-            Time horaInicio,
-            Time horaFin,
-            String diaInicio,
-            String diaFin
-    ) {
+    public void insertarEmpresaRepartidora(int idEmpresa, String nombre, String telefono, String email, String direccion, BigDecimal cobroEnvio, Time horaInicio, Time horaFin, String diaInicio, String diaFin) {
 
         Connection con = null;
         PreparedStatement ps = null;
@@ -130,7 +119,7 @@ public class EnviosDAO {
         } catch (Exception e) {
 
             System.out.println("Error al insertar empresa");
-            e.printStackTrace();
+            e.getMessage();
 
         } finally {
 
@@ -142,18 +131,7 @@ public class EnviosDAO {
     // =========================================
     // ACTUALIZAR EMPRESA
     // =========================================
-    public void actualizarEmpresaRepartidora(
-            int idEmpresa,
-            String nombre,
-            String telefono,
-            String email,
-            String direccion,
-            BigDecimal cobroEnvio,
-            Time horaInicio,
-            Time horaFin,
-            String diaInicio,
-            String diaFin
-    ) {
+    public void actualizarEmpresaRepartidora(int idEmpresa, String nombre, String telefono, String email, String direccion, BigDecimal cobroEnvio, Time horaInicio, Time horaFin, String diaInicio, String diaFin) {
 
         Connection con = null;
         PreparedStatement ps = null;
@@ -239,7 +217,7 @@ public class EnviosDAO {
         } catch (Exception e) {
 
             System.out.println("Error al actualizar empresa");
-            e.printStackTrace();
+            e.getMessage();
 
         } finally {
 
@@ -248,4 +226,307 @@ public class EnviosDAO {
         }
     }
 
+    // =========================================
+// BUSCAR ENVIO POR ID
+// =========================================
+    public void buscarEnvioPorId(int idEnvio) {
+
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql =
+                "SELECT * FROM Envio_producto WHERE id_envio = ?";
+
+        try {
+
+            con = ConexionBD.getConexion();
+
+            ps = con.prepareStatement(sql);
+
+            ps.setInt(1, idEnvio);
+
+            rs = ps.executeQuery();
+
+            if(rs.next()){
+
+                System.out.println("\n=== ENVIO ENCONTRADO ===");
+
+                System.out.println("ID envio: "
+                        + rs.getInt("id_envio"));
+
+                System.out.println("ID factura: "
+                        + rs.getInt("id_factura"));
+
+                System.out.println("ID empresa repartidora: "
+                        + rs.getInt("id_empresa_repartidora"));
+
+                System.out.println("Estado: "
+                        + rs.getString("estado"));
+
+                System.out.println("Fecha envio: "
+                        + rs.getTimestamp("fecha_envio"));
+
+                System.out.println("Fecha recepcion: "
+                        + rs.getTimestamp("fecha_recepcion"));
+
+            } else {
+
+                System.out.println(
+                        "No existe un envio con ID: "
+                                + idEnvio
+                );
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println(
+                    "Error: " + e.getMessage()
+            );
+
+        } finally {
+
+            try { if(rs != null) rs.close(); } catch(Exception e){}
+            try { if(ps != null) ps.close(); } catch(Exception e){}
+            try { if(con != null) con.close(); } catch(Exception e){}
+        }
+    }
+
+    // =========================================
+    // LISTAR ENVIOS
+    // =========================================
+    public void listarEnvios() {
+
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT * FROM Envio_producto";
+
+        try {
+
+            con = ConexionBD.getConexion();
+
+            ps = con.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            System.out.println("\n=== LISTA DE ENVIOS ===");
+
+            while(rs.next()){
+
+                System.out.println("----------------------------");
+
+                System.out.println("ID envio: "
+                        + rs.getInt("id_envio"));
+
+                System.out.println("ID factura: "
+                        + rs.getInt("id_factura"));
+
+                System.out.println("ID empresa repartidora: "
+                        + rs.getInt("id_empresa_repartidora"));
+
+                System.out.println("Estado: "
+                        + rs.getString("estado"));
+
+                System.out.println("Fecha envio: "
+                        + rs.getTimestamp("fecha_envio"));
+
+                System.out.println("Fecha recepcion: "
+                        + rs.getTimestamp("fecha_recepcion"));
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println(
+                    "Error: " + e.getMessage()
+            );
+
+        } finally {
+
+            try { if(rs != null) rs.close(); } catch(Exception e){}
+            try { if(ps != null) ps.close(); } catch(Exception e){}
+            try { if(con != null) con.close(); } catch(Exception e){}
+        }
+    }
+
+    // =========================================
+    // LISTAR EMPRESAS REPARTIDORAS COMPACTO
+    // =========================================
+    public void listarEmpresasRepartidorasCompacto() {
+
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql =
+                "SELECT id_empresa, nombre " +
+                        "FROM Empresa_repartidora";
+
+        try {
+
+            con = ConexionBD.getConexion();
+
+            ps = con.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            System.out.println(
+                    "\n=== EMPRESAS REPARTIDORAS ==="
+            );
+
+            System.out.printf(
+                    "%-10s %-30s%n",
+                    "ID",
+                    "NOMBRE"
+            );
+
+            System.out.println(
+                    "-----------------------------------"
+            );
+
+            while(rs.next()){
+
+                System.out.printf(
+                        "%-10d %-30s%n",
+                        rs.getInt("id_empresa"),
+                        rs.getString("nombre")
+                );
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println(
+                    "Error: " + e.getMessage()
+            );
+
+        } finally {
+
+            try { if(rs != null) rs.close(); } catch(Exception e){}
+            try { if(ps != null) ps.close(); } catch(Exception e){}
+            try { if(con != null) con.close(); } catch(Exception e){}
+        }
+    }
+
+    // =========================================
+    // INSERTAR ENVIO PRODUCTO
+    // =========================================
+    public void insertarEnvioProducto(int idEnvio, int idFactura, int idEmpresaRepartidora) {
+
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        String sql =
+                "{CALL sp_InsertarEnvioProducto(?, ?, ?)}";
+
+        try {
+
+            con = ConexionBD.getConexion();
+
+            ps = con.prepareCall(sql);
+
+            ps.setInt(1, idEnvio);
+
+            ps.setInt(2, idFactura);
+
+            ps.setInt(3, idEmpresaRepartidora);
+
+            ps.execute();
+
+            System.out.println(
+                    "Envio insertado correctamente"
+            );
+
+        } catch (SQLException e) {
+
+            System.out.println(
+                    "Error: " + e.getMessage()
+            );
+
+        } finally {
+
+            try { if(ps != null) ps.close(); } catch(Exception e){}
+            try { if(con != null) con.close(); } catch(Exception e){}
+        }
+    }
+
+    // =========================================
+    // INSERTAR DETALLE ENVIO
+    // =========================================
+    public void insertarDetalleEnvio(int idEnvio, int idDetalleFactura) {
+
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        String sql =
+                "{CALL sp_InsertarDetalleEnvio(?, ?)}";
+
+        try {
+
+            con = ConexionBD.getConexion();
+
+            ps = con.prepareCall(sql);
+
+            ps.setInt(1, idEnvio);
+
+            ps.setInt(2, idDetalleFactura);
+
+            ps.execute();
+
+            System.out.println(
+                    "Detalle envio insertado correctamente"
+            );
+
+        } catch (SQLException e) {
+
+            System.out.println(
+                    "Error: " + e.getMessage()
+            );
+
+        } finally {
+
+            try { if(ps != null) ps.close(); } catch(Exception e){}
+            try { if(con != null) con.close(); } catch(Exception e){}
+        }
+    }
+
+    // =========================================
+    // ACTUALIZAR ESTADO ENVIO
+    // =========================================
+    public void actualizarEstadoEnvio(int idEnvio, String estado) {
+
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        String sql =
+                "{CALL sp_ActualizarEstadoEnvioProducto(?, ?)}";
+
+        try {
+
+            con = ConexionBD.getConexion();
+
+            ps = con.prepareCall(sql);
+
+            ps.setInt(1, idEnvio);
+
+            ps.setString(2, estado);
+
+            ps.execute();
+
+            System.out.println(
+                    "Estado actualizado correctamente"
+            );
+
+        } catch (SQLException e) {
+
+            System.out.println(
+                    "Error: " + e.getMessage()
+            );
+
+        } finally {
+
+            try { if(ps != null) ps.close(); } catch(Exception e){}
+            try { if(con != null) con.close(); } catch(Exception e){}
+        }
+    }
 }
