@@ -37,3 +37,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### conexion para no cambiar la contra ###
+src/main/java/com/aplicacion/conexion/ConexionBD.java
