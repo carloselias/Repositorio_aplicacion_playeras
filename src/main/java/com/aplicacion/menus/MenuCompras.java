@@ -1,6 +1,6 @@
 package com.aplicacion.menus;
 
-import com.aplicacion.dao.EnviosDAO;
+import com.aplicacion.dao.ProveedoresDAO;
 
 import java.math.BigDecimal;
 import java.sql.Time;
@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class MenuCompras {
     Scanner sc = new Scanner(System.in);
 
-    EnviosDAO dao = new EnviosDAO();
+    ProveedoresDAO dao = new ProveedoresDAO();
 
     public void menu() {
 
@@ -18,11 +18,15 @@ public class MenuCompras {
         do {
 
             System.out.println("\n=== MENU COMPRAS ===");
-            System.out.println("1. Listar compras");
-            System.out.println("2. Insertar compra");
-            System.out.println("2. Insertar detalle compra");
-            System.out.println("3. Actualizar compra");
-            System.out.println("4. Salir");
+            System.out.println("PROVEEDORES ");
+            System.out.println("1. Listar Proveedores");
+            System.out.println("2. Insertar Proveedores");
+            System.out.println("3. Modificar Proveedor\n");
+            System.out.println("COMPRAS ");
+            System.out.println("4. Listar compras");
+            System.out.println("5. Insertar compra");
+            System.out.println("6. Insertar detalle compra");
+            System.out.println("0. Salir");
 
             opcion = Integer.parseInt(sc.nextLine());
 
@@ -33,7 +37,7 @@ public class MenuCompras {
                 // ==================================
                 case 1:
 
-                    dao.listarEmpresasRepartidoras();
+                    dao.listarProveedores();
 
                     break;
 
@@ -57,35 +61,16 @@ public class MenuCompras {
                     System.out.print("Direccion: ");
                     String direccion = sc.nextLine();
 
-                    System.out.print("Cobro envio: ");
-                    BigDecimal cobro =
-                            new BigDecimal(sc.nextLine());
+                    System.out.print("Estado activo: ");
+                    int activo = Integer.parseInt(sc.nextLine());
 
-                    System.out.print("Hora inicio (HH:MM:SS): ");
-                    Time horaInicio =
-                            Time.valueOf(sc.nextLine());
-
-                    System.out.print("Hora fin (HH:MM:SS): ");
-                    Time horaFin =
-                            Time.valueOf(sc.nextLine());
-
-                    System.out.print("Dia inicio: ");
-                    String diaInicio = sc.nextLine();
-
-                    System.out.print("Dia fin: ");
-                    String diaFin = sc.nextLine();
-
-                    dao.insertarEmpresaRepartidora(
+                    dao.insertarProveedores(
                             id,
                             nombre,
                             telefono,
                             email,
                             direccion,
-                            cobro,
-                            horaInicio,
-                            horaFin,
-                            diaInicio,
-                            diaFin
+                            activo
                     );
 
                     break;
@@ -95,10 +80,17 @@ public class MenuCompras {
                 // ==================================
                 case 3:
 
-                    System.out.print("ID empresa: ");
-                    int idActualizar =
-                            Integer.parseInt(sc.nextLine());
+                    System.out.print("ID proveedor a actualizar: ");
+                    int idActualizar;
+                    try{
+                        idActualizar =
+                                Integer.parseInt(sc.nextLine());
+                    }catch(Exception e){
+                        System.out.print("El ID no es valido");
+                        break;
+                    }
 
+                    System.out.print("--- campos actualizables ---\n");
                     System.out.print("Nombre: ");
                     String nuevoNombre = sc.nextLine();
 
@@ -111,17 +103,16 @@ public class MenuCompras {
                     System.out.print("Direccion: ");
                     String nuevaDireccion = sc.nextLine();
 
-                    dao.actualizarEmpresaRepartidora(
+                    System.out.print("Activo: ");
+                    String nuevoActivo = sc.nextLine();
+
+                    dao.actualizarProveedor(
                             idActualizar,
                             nuevoNombre,
                             nuevoTelefono,
                             nuevoEmail,
                             nuevaDireccion,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null
+                            nuevoActivo
                     );
 
                     break;

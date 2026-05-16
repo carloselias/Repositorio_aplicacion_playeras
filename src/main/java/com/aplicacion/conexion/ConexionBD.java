@@ -13,7 +13,7 @@ public class ConexionBD {
                     + "trustServerCertificate=true;";
 
     private static final String USER = "sa";
-    private static final String PASSWORD = "HolaKoishi";
+    private static final String PASSWORD = "umg2026";
 
     public static Connection getConexion() {
 
@@ -35,5 +35,13 @@ public class ConexionBD {
         }
 
         return con;
+    }
+
+    public static void main(String[] args) {
+        Connection conexion = getConexion();
+        if (conexion != null)
+            System.out.println("Conectado con la base de datos: "+conexion);
+        else
+            System.out.println("No Conectado con la base de datos");
     }
 }
