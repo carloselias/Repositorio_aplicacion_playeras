@@ -8,7 +8,7 @@ import java.sql.*;
 public class InventarioProductoDAO {
 
     // =========================================
-    // LISTAR Inventario de materia prima
+    // LISTAR INVENTARIO DE MATERIA PRIMA
     // =========================================
     public void listarProductos() {
         Connection con = null;
