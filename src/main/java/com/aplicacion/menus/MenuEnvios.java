@@ -18,13 +18,15 @@ public class MenuEnvios {
 
         do {
 
-            System.out.println("\n=== MENU ===");
+            System.out.println("\n=== MENU DE ENVIOS ===");
             System.out.println("1. Listar empresas");
             System.out.println("2. Insertar empresa");
             System.out.println("3. Actualizar empresa");
             System.out.println("4. Buscar envio");
             System.out.println("5. Listar envios");
-
+            System.out.println("6. Insertar envio producto");
+            System.out.println("7. Insertar detalle envio");
+            System.out.println("8. Actualizar estado envio");
             System.out.println("0. Salir");
 
             opcion = Integer.parseInt(sc.nextLine());
@@ -238,6 +240,6 @@ public class MenuEnvios {
                     break;
             }
 
-        } while(opcion != 4);
+        } while(opcion != 0);
     }
 }
