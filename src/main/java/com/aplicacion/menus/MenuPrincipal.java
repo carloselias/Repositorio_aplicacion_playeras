@@ -15,8 +15,18 @@ public class MenuPrincipal {
             System.out.println("\n====================");
             System.out.println("   MENU PRINCIPAL");
             System.out.println("====================");
-            System.out.println("1. Envios");
-            System.out.println("2. Clientes");
+            System.out.println("1. Playeras");
+            System.out.println("2. Diseños");
+            System.out.println("3. Productos");
+            System.out.println("4. Materia prima");
+            System.out.println("5. Clientes");
+            System.out.println("6. Compra");
+            System.out.println("7. Venta");
+            System.out.println("8. Inventario");
+            System.out.println("9. Producción");
+            System.out.println("10. Envíos");
+            System.out.println("11. Empleados");
+            System.out.println("12. Usuarios");
             System.out.println("0. Salir");
             System.out.print("Opcion: ");
 
@@ -24,15 +34,17 @@ public class MenuPrincipal {
 
             switch(opcion){
 
-                case 1:
-
-                    MenuEnvios menuEnvios = new MenuEnvios();
-                    menuEnvios.menu();
-
-                    break;
 
                 case 2:
 
+
+                    break;
+
+
+                case 10:
+
+                    MenuEnvios menuEnvios = new MenuEnvios();
+                    menuEnvios.menu();
 
                     break;
 
