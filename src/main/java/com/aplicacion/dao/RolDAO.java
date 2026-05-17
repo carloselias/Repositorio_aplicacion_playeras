@@ -76,16 +76,11 @@ public class RolDAO {
             ps.setString(2, nombre);
             ps.setString(3, descr);
 
-
-            SQLWarning warning = ps.getWarnings();
-            while (warning != null) {
-                System.out.println(warning.getMessage());
-                warning = warning.getNextWarning();
-            }
+            ps.execute();
 
         } catch (Exception e) {
 
-            System.out.println("Error al insertar rol");
+            System.out.println(e.getMessage());
             e.printStackTrace();
 
         } finally {
@@ -121,6 +116,7 @@ public class RolDAO {
             ps.setString(2, nombre);
             ps.setString(3, descr);
 
+            ps.execute();
 
             SQLWarning warning = ps.getWarnings();
             while (warning != null) {
