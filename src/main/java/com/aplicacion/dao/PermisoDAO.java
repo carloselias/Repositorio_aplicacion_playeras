@@ -2,6 +2,7 @@ package com.aplicacion.dao;
 
 import com.aplicacion.conexion.ConexionBD;
 
+import java.math.BigDecimal;
 import javax.print.DocFlavor;
 import java.sql.*;
 

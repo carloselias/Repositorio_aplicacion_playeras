@@ -49,7 +49,7 @@ public class MovimientoInvMaterialDAO {
                         + rs.getInt("salida"));
 
                 System.out.println("Tipo de Movimiento: "
-                        + rs.getInt("tipo_movimiento"));
+                        + rs.getString("tipo_movimiento"));
 
             }
 
