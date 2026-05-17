@@ -153,6 +153,55 @@ public class InventarioMateriaDAO {
     }
 
 
+    public void BuscarMateriaPrima(
+            int id
+    ) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT * FROM Inv_materia_prima WHERE id_materia = ?";
+
+        try {
+            con = ConexionBD.getConexion();
+            ps = con.prepareStatement(sql);
+
+            ps.setInt(1, id);
+
+            rs = ps.executeQuery();
+
+            while(rs.next()) {
+
+                System.out.println("----------------------------");
+
+                System.out.println("ID: "
+                        + rs.getInt("id_materia"));
+
+                System.out.println("ID unidad de medida: "
+                        + rs.getInt("id_unidad_m"));
+
+                System.out.println("Nombre: "
+                        + rs.getString("nombre"));
+
+                System.out.println("Costo Unitario: "
+                        + rs.getFloat("costo_unitario"));
+
+                System.out.println("Stock: "
+                        + rs.getInt("stock_actual"));
+            }
+
+        } catch (Exception e) {
+
+            System.out.println("Error al listar inventario de materia prima");
+            e.printStackTrace();
+
+        } finally {
+
+            try { if(rs != null) rs.close(); } catch(Exception e){}
+            try { if(ps != null) ps.close(); } catch(Exception e){}
+            try { if(con != null) con.close(); } catch(Exception e){}
+        }
+    }
 
 
 }

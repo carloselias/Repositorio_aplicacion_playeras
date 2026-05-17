@@ -42,6 +42,7 @@ public class MenuInventario {
                         System.out.println("1. Listar materia prima");
                         System.out.println("2. Insertar materia prima");
                         System.out.println("3. Modificar materia prima");
+                        System.out.println("4. Buscar materia prima");
                         System.out.println("0. Salir");
 
                         opcion2 = Integer.parseInt(sc.nextLine());
@@ -95,6 +96,13 @@ public class MenuInventario {
                                         nuevocosto_unitario,
                                         nuevostock
                                 );
+                                break;
+
+                            case 4:
+                                System.out.print("ID: ");
+                                int id_buscar = Integer.parseInt(sc.nextLine());
+
+                                daoMateria.BuscarMateriaPrima(id_buscar);
                                 break;
 
                             case 0:
