@@ -14,7 +14,7 @@ public class MenuVentas {
 
         do {
 
-            System.out.println("\n=== MENU DE ENVIOS ===");
+            System.out.println("\n=== MENU DE VENTAS ===");
             System.out.println("1. Insertar Detalle Factura");
             System.out.println("2. Listar Detalles Factura");
             System.out.println("3. Buscar Detalle Factura");
