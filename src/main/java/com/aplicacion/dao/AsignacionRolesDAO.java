@@ -65,7 +65,8 @@ public class AsignacionRolesDAO {
             int id_credencial,
             int id_rol,
             Date fecha,
-            int estatus
+            int estatus,
+            String desc_accion
 
     ) {
 

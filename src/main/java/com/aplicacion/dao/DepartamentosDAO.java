@@ -42,7 +42,7 @@ public class DepartamentosDAO {
 
         } catch (Exception e) {
 
-            System.out.println("Error al obtener datos de empleados. ");
+            System.out.println("Error al obtener datos de Departamento. ");
             e.printStackTrace();
 
         } finally {
@@ -86,7 +86,7 @@ public class DepartamentosDAO {
 
             if(!resultado) {
 
-                System.out.println("Empleado insertado con exito.");
+                System.out.println("Departamento insertado con exito.");
 
             } else {
 
@@ -96,7 +96,7 @@ public class DepartamentosDAO {
 
         } catch (Exception e) {
 
-            System.out.println("Error al insertar empleado.");
+            System.out.println("Error al insertar Departamento.");
             e.printStackTrace();
 
         } finally {

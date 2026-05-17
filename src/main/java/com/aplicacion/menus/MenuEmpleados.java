@@ -21,11 +21,11 @@ public class MenuEmpleados {
             System.out.println("EMPLEADOS");
             System.out.println("1. Listar empleados");
             System.out.println("2. Agregar empleado");
-            System.out.println("3. Modificar empleado");
+            System.out.println("3. Modificar empleado\n");
             System.out.println("DEPARTAMENTOS");
-            System.out.println("1. Listar departamento");
-            System.out.println("2. Agregar departamento");
-            System.out.println("3. Modificar departamento\n");
+            System.out.println("4. Listar departamento");
+            System.out.println("5. Agregar departamento");
+            System.out.println("6. Modificar departamento\n");
             System.out.println("0. Salir");
 
 
