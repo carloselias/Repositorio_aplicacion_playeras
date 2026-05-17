@@ -39,4 +39,4 @@ build/
 .DS_Store
 
 ### conexion para no cambiar la contra ###
-git update-index --skip-worktree src/main/java/com/aplicacion/conexion/ConexionBD.java
+src/main/java/com/aplicacion/conexion/ConexionBD.java

@@ -4,7 +4,7 @@ import com.aplicacion.dao.ProveedoresDAO;
 
 import java.util.Scanner;
 
-public class MenuProduccion1 {
+public class MenuProduccion {
     Scanner sc = new Scanner(System.in);
 
     ProveedoresDAO dao = new ProveedoresDAO();
@@ -15,15 +15,14 @@ public class MenuProduccion1 {
 
         do {
 
-            System.out.println("\n=== MENU COMPRAS ===");
-            System.out.println("PROVEEDORES ");
-            System.out.println("1. Listar Proveedores");
-            System.out.println("2. Insertar Proveedores");
-            System.out.println("3. Modificar Proveedor\n");
-            System.out.println("COMPRAS ");
-            System.out.println("4. Listar compras");
-            System.out.println("5. Insertar compra");
-            System.out.println("6. Insertar detalle compra");
+            System.out.println("\n=== PRODUCCION ===");
+            System.out.println("1. Catalogo procesos");
+            System.out.println("2. Catalogo Maquinas");
+            System.out.println("3. Maquinas existentes\n");
+            System.out.println("4. Ordenes de producción");
+            System.out.println("5. Registros de produccion (lotes) ");
+            System.out.println("6. Registros de procesos (fases de cada lote)");
+            System.out.println("7. Registros de maquinas (en fases de lote) \n");
             System.out.println("0. Salir");
 
             opcion = Integer.parseInt(sc.nextLine());
