@@ -177,5 +177,77 @@ public class RolDAO {
         }
     }
 
+    // =========================================
+    // PERMISOS DE ROL
+    // =========================================
+    public void listarPermisosRol() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT * FROM Rol_permiso";
+
+        try {
+            con = ConexionBD.getConexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            System.out.println("\n=== PERMISOS DE ROLES ===");
+
+            while (rs.next()) {
+
+                System.out.println("----------------------------");
+
+                System.out.println("ID de rol: "
+                        + rs.getInt("id_rol"));
+
+                System.out.println("ID de permiso: "
+                        + rs.getInt("id_permiso"));
+
+            }
+
+        } catch (Exception e) {
+
+            System.out.println("Error al listar roles");
+            e.printStackTrace();
+
+        }
+    }
+    // =========================================
+    // PERMISOS DE ROL
+    // =========================================
+    public void insertarpermisoRol(
+            int id_rol,
+            int id_permiso
+    ) {
+
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        String sql =
+                "{CALL sp_InsertarRolPermiso(?, ?)}";
+
+        try {
+
+            con = ConexionBD.getConexion();
+
+            ps = con.prepareCall(sql);
+
+            ps.setInt(1, id_rol);
+            ps.setInt(2, id_permiso);
+
+            ps.execute();
+
+        } catch (Exception e) {
+
+            System.out.println(e.getMessage());
+
+        } finally {
+
+            try { if(ps != null) ps.close(); } catch(Exception e){}
+            try { if(con != null) con.close(); } catch(Exception e){}
+        }
+    }
+
 
 }

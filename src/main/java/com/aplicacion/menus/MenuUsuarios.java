@@ -126,6 +126,8 @@ public class MenuUsuarios {
                         System.out.println("2. Insertar rol");
                         System.out.println("3. Modificar rol");
                         System.out.println("4. Buscar rol");
+                        System.out.println("5. Listar Permisos de rol");
+                        System.out.println("6. Insertar Permisos de rol");
                         System.out.println("0. Salir");
 
                         opcion3 = Integer.parseInt(sc.nextLine());
@@ -177,6 +179,24 @@ public class MenuUsuarios {
                                 int id_buscar = Integer.parseInt(sc.nextLine());
 
                                 daoRol.BuscarRol(id_buscar);
+                                break;
+
+                            case 5:
+                                daoRol.listarPermisosRol();
+                                break;
+
+                            case 6:
+                                System.out.print("ID de rol: ");
+                                int id_rol = Integer.parseInt(sc.nextLine());
+
+                                System.out.print("ID de permiso: ");
+                                int id_permiso = Integer.parseInt(sc.nextLine());
+
+                                daoRol.insertarpermisoRol(
+                                        id_rol,
+                                        id_permiso
+
+                                );
                                 break;
 
                             case 0:
