@@ -41,6 +41,13 @@ public class MenuPrincipal {
 
                     break;
 
+                case 5:
+
+                    MenuClientes MenuClientes = new MenuClientes();
+                    MenuClientes.menu();
+
+                    break;
+
                 case 6:
 
                     MenuCompras MenuCompras = new MenuCompras();
