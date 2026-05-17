@@ -12,7 +12,7 @@ public class MenuUsuarios {
     UsuarioDAO daoUsuario = new UsuarioDAO();
     RolDAO daoRol = new RolDAO();
     PermisoDAO daoPermiso = new PermisoDAO();
-    MovimientoInvProductoDAO daoInvProducto = new MovimientoInvProductoDAO();
+    AsignacionRolesDAO daoAsignacion = new AsignacionRolesDAO();
 
     public void menu() {
 
@@ -254,7 +254,42 @@ public class MenuUsuarios {
                     break;
 
                 case 4:
-                    daoInvProducto.listarMovProducto();
+                    int opcion5;
+
+                    do {
+                        System.out.println("=== ASIGNACION DE ROL ===");
+                        System.out.println("1. Listar asignaciones");
+                        System.out.println("2. Insertar asignacion");
+                        System.out.println("3. Modificar asignacion");
+                        System.out.println("4. Buscar asignacion");
+                        System.out.println("0. Salir");
+
+                        opcion5 = Integer.parseInt(sc.nextLine());
+
+                        switch (opcion5) {
+
+                            case 1:
+
+                                break;
+
+                            case 2:
+
+                                break;
+
+                            case 3:
+
+                                break;
+
+                            case 4:
+
+                                break;
+
+                            case 0:
+                                System.out.println("Fin");
+                                break;
+                        }
+
+                    }while (opcion5 != 0);
                     break;
 
                 case 0:
