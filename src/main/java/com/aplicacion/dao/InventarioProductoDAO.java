@@ -80,16 +80,10 @@ public class InventarioProductoDAO {
             ps.setInt(3, id_almacen);
             ps.setInt(4, stock);
 
-            boolean resultado = ps.execute();
-
-            if(!resultado) {
-
-                System.out.println("Producto insertada");
-
-            } else {
-
-                System.out.println("No se ejecutó");
-
+            SQLWarning warning = ps.getWarnings();
+            while (warning != null) {
+                System.out.println(warning.getMessage());
+                warning = warning.getNextWarning();
             }
 
         } catch (Exception e) {
@@ -130,15 +124,10 @@ public class InventarioProductoDAO {
             ps.setInt(2, id_almacen);
             ps.setInt(3, stock);
 
-            boolean resultado = ps.execute();
-
-            if(!resultado){
-
-                System.out.println("Producto en inventario actualizado");
-
-            } else {
-
-                System.out.println("No se actualizó");
+            SQLWarning warning = ps.getWarnings();
+            while (warning != null) {
+                System.out.println(warning.getMessage());
+                warning = warning.getNextWarning();
             }
 
         } catch (Exception e) {
@@ -154,6 +143,39 @@ public class InventarioProductoDAO {
     }
 
 
+    // =========================================
+    // BUSCAR INVENTARIO DE PRODUCTOS
+    // =========================================
+    public void BuscarProductoInv(
+            int id
+    ) {
 
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        String sql = "SELECT * FROM Inventario_producto WHERE id_inventario = ?";
+
+        try {
+
+            con = ConexionBD.getConexion();
+
+            ps = con.prepareStatement(sql);
+
+            // ID obligatorio
+            ps.setInt(1, id);
+
+
+
+        } catch (Exception e) {
+
+            System.out.println("Error al buscar producto");
+            e.printStackTrace();
+
+        } finally {
+
+            try { if(ps != null) ps.close(); } catch(Exception e){}
+            try { if(con != null) con.close(); } catch(Exception e){}
+        }
+    }
 
 }
