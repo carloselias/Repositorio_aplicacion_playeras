@@ -72,17 +72,11 @@ public class PermisoDAO {
             ps.setInt(1, id_permiso);
             ps.setString(2, desc_accion);
 
-
-            SQLWarning warning = ps.getWarnings();
-            while (warning != null) {
-                System.out.println(warning.getMessage());
-                warning = warning.getNextWarning();
-            }
+            ps.execute();
 
         } catch (Exception e) {
 
-            System.out.println("Error al insertar permiso");
-            e.printStackTrace();
+            System.out.println(e.getMessage());
 
         } finally {
 
@@ -115,17 +109,11 @@ public class PermisoDAO {
             ps.setInt(1, id_permiso);
             ps.setString(2, desc_accion);
 
-
-            SQLWarning warning = ps.getWarnings();
-            while (warning != null) {
-                System.out.println(warning.getMessage());
-                warning = warning.getNextWarning();
-            }
+            ps.execute();
 
         } catch (Exception e) {
 
-            System.out.println("Error al actualizar permiso");
-            e.printStackTrace();
+            System.out.println(e.getMessage());
 
         } finally {
 
@@ -138,7 +126,7 @@ public class PermisoDAO {
     // =========================================
     // BUSCAR PERMISO
     // =========================================
-    public void BuscarPermiso(
+    public void buscarPermiso(
             int id
     ) {
         Connection con = null;

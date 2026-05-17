@@ -11,7 +11,7 @@ public class MenuUsuarios {
 
     UsuarioDAO daoUsuario = new UsuarioDAO();
     RolDAO daoRol = new RolDAO();
-    MovimientoInvMaterialDAO daoInvMateria = new MovimientoInvMaterialDAO();
+    PermisoDAO daoPermiso = new PermisoDAO();
     MovimientoInvProductoDAO daoInvProducto = new MovimientoInvProductoDAO();
 
     public void menu() {
@@ -32,7 +32,7 @@ public class MenuUsuarios {
             switch(opcion){
 
                 // ==================================
-                // LISTAR
+                // USUARIOS
                 // ==================================
                 case 1:
 
@@ -115,7 +115,7 @@ public class MenuUsuarios {
                     break;
 
                 // ==================================
-                // INSERTAR
+                // ROLES
                 // ==================================
                 case 2:
                     int opcion3;
@@ -186,14 +186,71 @@ public class MenuUsuarios {
 
                     }while (opcion3 != 0);
 
-
                     break;
 
                 // ==================================
-                // ACTUALIZAR
+                // PERMISOS
                 // ==================================
                 case 3:
-                    daoInvMateria.listarMovMateria();
+                    int opcion4;
+
+                    do {
+                        System.out.println("=== PERMISOS ===");
+                        System.out.println("1. Listar permisos");
+                        System.out.println("2. Insertar permiso");
+                        System.out.println("3. Modificar permiso");
+                        System.out.println("4. Buscar permiso");
+                        System.out.println("0. Salir");
+
+                        opcion4 = Integer.parseInt(sc.nextLine());
+
+                        switch (opcion4) {
+
+                            case 1:
+                                daoPermiso.listarPermiso();
+                                break;
+
+                            case 2:
+                                System.out.print("ID: ");
+                                int id = Integer.parseInt(sc.nextLine());
+
+                                System.out.print("Descripcion: ");
+                                String desc_accion = sc.nextLine();
+
+                                daoPermiso.insertarPermiso(
+                                        id,
+                                        desc_accion
+
+                                );
+                                break;
+
+                            case 3:
+                                System.out.println("Campos a actualizar");
+                                System.out.print("ID: ");
+                                int nuevoid = Integer.parseInt(sc.nextLine());
+
+                                System.out.print("Descripcion: ");
+                                String nuevadesc_accion = sc.nextLine();
+
+                                daoPermiso.actualizarPermiso(
+                                        nuevoid,
+                                        nuevadesc_accion
+                                );
+                                break;
+
+                            case 4:
+                                System.out.print("ID: ");
+                                int id_buscar = Integer.parseInt(sc.nextLine());
+
+                                daoPermiso.buscarPermiso(id_buscar);
+                                break;
+
+                            case 0:
+                                System.out.println("Fin");
+                                break;
+                        }
+
+                    }while (opcion4 != 0);
                     break;
 
                 case 4:
