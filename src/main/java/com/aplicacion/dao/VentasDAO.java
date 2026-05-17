@@ -2,7 +2,6 @@ package com.aplicacion.dao;
 
 import com.aplicacion.conexion.ConexionBD;
 
-import java.math.BigDecimal;
 import java.sql.*;
 
 public class VentasDAO {
@@ -295,63 +294,149 @@ public class VentasDAO {
     }
 
     // =========================================
-    // BUSCAR FACTURA
+    // BUSCAR FACTURA + DETALLES
     // =========================================
     public void buscarFactura(int idFactura) {
 
         Connection con = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
 
-        String sql =
+        PreparedStatement psFactura = null;
+        PreparedStatement psDetalle = null;
+
+        ResultSet rsFactura = null;
+        ResultSet rsDetalle = null;
+
+        String sqlFactura =
                 "SELECT * FROM Factura " +
+                        "WHERE id_factura = ?";
+
+        String sqlDetalle =
+                "SELECT * FROM Detalle_Factura " +
                         "WHERE id_factura = ?";
 
         try {
 
             con = ConexionBD.getConexion();
 
-            ps = con.prepareStatement(sql);
+            // =====================================
+            // BUSCAR FACTURA
+            // =====================================
+            psFactura = con.prepareStatement(sqlFactura);
 
-            ps.setInt(1, idFactura);
+            psFactura.setInt(1, idFactura);
 
-            rs = ps.executeQuery();
+            rsFactura = psFactura.executeQuery();
 
-            if(rs.next()){
+            if(rsFactura.next()){
 
                 System.out.println(
-                        "\n=== FACTURA ENCONTRADA ==="
+                        "\n========== FACTURA =========="
                 );
 
                 System.out.println(
                         "ID factura: "
-                                + rs.getInt("id_factura")
+                                + rsFactura.getInt("id_factura")
                 );
 
                 System.out.println(
                         "ID cliente: "
-                                + rs.getInt("id_cliente")
+                                + rsFactura.getInt("id_cliente")
                 );
 
                 System.out.println(
                         "Estado: "
-                                + rs.getString("estado")
+                                + rsFactura.getString("estado")
                 );
 
                 System.out.println(
                         "Fecha: "
-                                + rs.getDate("fecha")
+                                + rsFactura.getDate("fecha")
                 );
 
                 System.out.println(
                         "Total: "
-                                + rs.getBigDecimal("total")
+                                + rsFactura.getBigDecimal("total")
                 );
 
                 System.out.println(
                         "Tipo venta: "
-                                + rs.getString("tipo_venta")
+                                + rsFactura.getString("tipo_venta")
                 );
+
+                // =====================================
+                // BUSCAR DETALLES
+                // =====================================
+                psDetalle =
+                        con.prepareStatement(sqlDetalle);
+
+                psDetalle.setInt(1, idFactura);
+
+                rsDetalle =
+                        psDetalle.executeQuery();
+
+                System.out.println(
+                        "\n====== DETALLES FACTURA ======"
+                );
+
+                boolean hayDetalles = false;
+
+                while(rsDetalle.next()){
+
+                    hayDetalles = true;
+
+                    System.out.println(
+                            "-------------------------"
+                    );
+
+                    System.out.println(
+                            "ID detalle: "
+                                    + rsDetalle.getInt(
+                                    "id_detalle_factura"
+                            )
+                    );
+
+                    System.out.println(
+                            "ID producto: "
+                                    + rsDetalle.getInt(
+                                    "id_producto"
+                            )
+                    );
+
+                    System.out.println(
+                            "Cantidad: "
+                                    + rsDetalle.getInt(
+                                    "cantidad"
+                            )
+                    );
+
+                    System.out.println(
+                            "Precio unitario: "
+                                    + rsDetalle.getBigDecimal(
+                                    "precio_unitario"
+                            )
+                    );
+
+                    System.out.println(
+                            "Precio venta: "
+                                    + rsDetalle.getBigDecimal(
+                                    "precio_venta"
+                            )
+                    );
+
+                    System.out.println(
+                            "Subtotal: "
+                                    + rsDetalle.getBigDecimal(
+                                    "subtotal"
+                            )
+                    );
+                }
+
+                if(!hayDetalles){
+
+                    System.out.println(
+                            "La factura no tiene detalles."
+                    );
+                }
 
             } else {
 
@@ -368,9 +453,30 @@ public class VentasDAO {
 
         } finally {
 
-            try { if(rs != null) rs.close(); } catch(Exception e){}
-            try { if(ps != null) ps.close(); } catch(Exception e){}
-            try { if(con != null) con.close(); } catch(Exception e){}
+            try {
+                if(rsFactura != null)
+                    rsFactura.close();
+            } catch(Exception e){}
+
+            try {
+                if(rsDetalle != null)
+                    rsDetalle.close();
+            } catch(Exception e){}
+
+            try {
+                if(psFactura != null)
+                    psFactura.close();
+            } catch(Exception e){}
+
+            try {
+                if(psDetalle != null)
+                    psDetalle.close();
+            } catch(Exception e){}
+
+            try {
+                if(con != null)
+                    con.close();
+            } catch(Exception e){}
         }
     }
 }
