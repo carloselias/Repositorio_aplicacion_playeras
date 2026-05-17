@@ -9,7 +9,7 @@ public class MovimientoInvMaterialDAO {
     // =========================================
     // LISTAR MOVIMIENTOS DE INVENTARIO DE MATERIA PRIMA
     // =========================================
-    public void listarMateriaPrima() {
+    public void listarMovMateria() {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;

@@ -2,6 +2,8 @@ package com.aplicacion.menus;
 
 import com.aplicacion.dao.InventarioMateriaDAO;
 import com.aplicacion.dao.InventarioProductoDAO;
+import com.aplicacion.dao.MovimientoInvMaterialDAO;
+import com.aplicacion.dao.MovimientoInvProductoDAO;
 
 import java.math.BigDecimal;
 import java.sql.Time;
@@ -12,6 +14,8 @@ public class MenuInventario {
 
     InventarioMateriaDAO daoMateria = new InventarioMateriaDAO();
     InventarioProductoDAO daoProducto = new InventarioProductoDAO();
+    MovimientoInvMaterialDAO daoInvMateria = new MovimientoInvMaterialDAO();
+    MovimientoInvProductoDAO daoInvProducto = new MovimientoInvProductoDAO();
 
     public void menu() {
 
@@ -196,8 +200,11 @@ public class MenuInventario {
                 // ACTUALIZAR
                 // ==================================
                 case 3:
+                    daoInvMateria.listarMovMateria();
+                    break;
 
-
+                case 4:
+                    daoInvProducto.listarMovProducto();
                     break;
 
                 case 0:
