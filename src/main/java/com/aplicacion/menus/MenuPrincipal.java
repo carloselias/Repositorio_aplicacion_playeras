@@ -88,6 +88,11 @@ public class MenuPrincipal {
                     MenuEmpleados.menu();
 
                     break;
+                case 12:
+
+                    MenuUsuarios MenuUsuarios = new MenuUsuarios();
+                    MenuUsuarios.menu();
+                    break;
 
                 case 0:
 

@@ -105,9 +105,9 @@ public class AsignacionRolesDAO {
     }
 
     // =========================================
-    // ACTUALIZAR PERMISO
+    // ACTUALIZAR ASIGNACION DE ROL
     // =========================================
-    public void actualizarPermiso(
+    public void actualizarAsignacion(
             int id_permiso,
             String desc_accion
     ) {
@@ -149,16 +149,16 @@ public class AsignacionRolesDAO {
 
 
     // =========================================
-    // BUSCAR PERMISO
+    // BUSCAR ASIGNACION DE ROL
     // =========================================
-    public void BuscarPermiso(
+    public void buscarAsignacion(
             int id
     ) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM Permiso WHERE id_permiso = ?";
+        String sql = "SELECT * FROM Asignar_rol WHERE id_asignacion = ?";
 
         try {
             con = ConexionBD.getConexion();
