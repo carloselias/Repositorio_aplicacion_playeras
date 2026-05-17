@@ -108,7 +108,7 @@ public class RolDAO {
         PreparedStatement ps = null;
 
         String sql =
-                "{CALL sp_ActualizarMateriaInv(?, ?, ?)}";
+                "{CALL sp_ActualizarRol(?, ?, ?)}";
 
         try {
 
