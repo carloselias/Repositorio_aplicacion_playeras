@@ -2,50 +2,45 @@ package com.aplicacion.dao;
 
 import com.aplicacion.conexion.ConexionBD;
 
+import javax.print.DocFlavor;
 import java.sql.*;
 
-public class InventarioMateriaDAO {
+public class RolDAO {
 
     // =========================================
-    // LISTAR Inventario de materia prima
+    // LISTAR ROLES
     // =========================================
-    public void listarMateriaPrima() {
+    public void listarRol() {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM Inv_materia_prima";
+        String sql = "SELECT * FROM Rol";
 
         try {
             con = ConexionBD.getConexion();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
 
-            System.out.println("\n=== MATERIA PRIMA REGISTRADA  ===");
+            System.out.println("\n=== ROLES REGISTRADOS  ===");
 
             while(rs.next()) {
 
                 System.out.println("----------------------------");
 
                 System.out.println("ID: "
-                        + rs.getInt("id_materia"));
-
-                System.out.println("ID unidad de medida: "
-                        + rs.getInt("id_unidad_m"));
+                        + rs.getInt("id_rol"));
 
                 System.out.println("Nombre: "
-                        + rs.getString("nombre"));
+                        + rs.getInt("nombre"));
 
-                System.out.println("Costo Unitario: "
-                        + rs.getFloat("costo_unitario"));
-
-                System.out.println("Stock: "
-                        + rs.getInt("stock_actual"));
+                System.out.println("Descripcion: "
+                        + rs.getString("descr"));
             }
 
         } catch (Exception e) {
 
-            System.out.println("Error al listar inventario de materia prima");
+            System.out.println("Error al listar roles");
             e.printStackTrace();
 
         } finally {
@@ -57,21 +52,19 @@ public class InventarioMateriaDAO {
     }
 
     // =========================================
-    // INSERTAR MATERIA PRIMA
+    // INSERTAR ROL
     // =========================================
-    public void insertarMateria(
-            int id_materia,
-            int id_unidad_m,
+    public void insertarRol(
+            int id_rol,
             String nombre,
-            float costo_unitario,
-            int stock
+            String descr
     ) {
 
         Connection con = null;
         PreparedStatement ps = null;
 
         String sql =
-                "{CALL sp_InsertarMateriaInv(?, ?, ?, ?, ?)}";
+                "{CALL sp_InsertarRol(?, ?, ?)}";
 
         try {
 
@@ -79,11 +72,9 @@ public class InventarioMateriaDAO {
 
             ps = con.prepareCall(sql);
 
-            ps.setInt(1, id_materia);
-            ps.setInt(2, id_unidad_m);
-            ps.setString(3, nombre);
-            ps.setFloat(4, costo_unitario);
-            ps.setInt(5, stock);
+            ps.setInt(1, id_rol);
+            ps.setString(2, nombre);
+            ps.setString(3, descr);
 
 
             SQLWarning warning = ps.getWarnings();
@@ -94,7 +85,7 @@ public class InventarioMateriaDAO {
 
         } catch (Exception e) {
 
-            System.out.println("Error al insertar empresa");
+            System.out.println("Error al insertar rol");
             e.printStackTrace();
 
         } finally {
@@ -105,12 +96,12 @@ public class InventarioMateriaDAO {
     }
 
     // =========================================
-    // ACTUALIZAR MATERIA PRIMA
+    // ACTUALIZAR ROL
     // =========================================
-    public void actualizarMateria(
-            int id_materia,
-            float costo_unitario,
-            int stock
+    public void actualizarRol(
+            int id_rol,
+            String nombre,
+            String descr
     ) {
 
         Connection con = null;
@@ -126,23 +117,20 @@ public class InventarioMateriaDAO {
             ps = con.prepareCall(sql);
 
             // ID obligatorio
-            ps.setInt(1, id_materia);
-            ps.setFloat(2, costo_unitario);
-            ps.setInt(3, stock);
+            ps.setInt(1, id_rol);
+            ps.setString(2, nombre);
+            ps.setString(3, descr);
 
-            boolean resultado = ps.execute();
 
-            // Capturar mensajes PRINT del SP
             SQLWarning warning = ps.getWarnings();
             while (warning != null) {
                 System.out.println(warning.getMessage());
                 warning = warning.getNextWarning();
             }
 
-
         } catch (Exception e) {
 
-            System.out.println("Error al actualizar materia prima");
+            System.out.println("Error al insertar rol");
             e.printStackTrace();
 
         } finally {
@@ -152,17 +140,18 @@ public class InventarioMateriaDAO {
         }
     }
 
+
     // =========================================
-    // BUSCAR MATERIA PRIMA
+    // BUSCAR ROL
     // =========================================
-    public void BuscarMateriaPrima(
+    public void BuscarRol(
             int id
     ) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM Inv_materia_prima WHERE id_materia = ?";
+        String sql = "SELECT * FROM Rol WHERE id_rol = ?";
 
         try {
             con = ConexionBD.getConexion();
@@ -177,24 +166,19 @@ public class InventarioMateriaDAO {
                 System.out.println("----------------------------");
 
                 System.out.println("ID: "
-                        + rs.getInt("id_materia"));
-
-                System.out.println("ID unidad de medida: "
-                        + rs.getInt("id_unidad_m"));
+                        + rs.getInt("id_rol"));
 
                 System.out.println("Nombre: "
-                        + rs.getString("nombre"));
+                        + rs.getInt("nombre"));
 
-                System.out.println("Costo Unitario: "
-                        + rs.getFloat("costo_unitario"));
+                System.out.println("Descripcion: "
+                        + rs.getString("descr"));
 
-                System.out.println("Stock: "
-                        + rs.getInt("stock_actual"));
             }
 
         } catch (Exception e) {
 
-            System.out.println("Error al buscar materia prima");
+            System.out.println("Error al buscar rol");
             e.printStackTrace();
 
         } finally {
