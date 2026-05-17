@@ -32,6 +32,9 @@ public class UsuarioDAO {
                 System.out.println("ID: "
                         + rs.getInt("id_credencial"));
 
+                System.out.println("ID de empleado: "
+                        + rs.getInt("id_empleado"));
+
                 System.out.println("Usuario: "
                         + rs.getString("usuario"));
 
@@ -53,18 +56,20 @@ public class UsuarioDAO {
     }
 
     // =========================================
-    // INSERTAR PERMISO
+    // INSERTAR USUARIO
     // =========================================
-    public void insertarPermiso(
-            int id_permiso,
-            String desc_accion
+    public void insertarUsuario(
+            int id_credencial,
+            int id_empleado,
+            String usuario,
+            String contrasenia
     ) {
 
         Connection con = null;
         PreparedStatement ps = null;
 
         String sql =
-                "{CALL sp_InsertarPermiso(?, ?)}";
+                "{CALL sp_InsertarCredencial(?, ?, ?, ?)}";
 
         try {
 
@@ -72,20 +77,17 @@ public class UsuarioDAO {
 
             ps = con.prepareCall(sql);
 
-            ps.setInt(1, id_permiso);
-            ps.setString(2, desc_accion);
+            ps.setInt(1, id_credencial);
+            ps.setInt(2, id_empleado);
+            ps.setString(3, usuario);
+            ps.setString(4, contrasenia);
 
 
-            SQLWarning warning = ps.getWarnings();
-            while (warning != null) {
-                System.out.println(warning.getMessage());
-                warning = warning.getNextWarning();
-            }
+            ps.execute();
 
         } catch (Exception e) {
 
-            System.out.println("Error al insertar permiso");
-            e.printStackTrace();
+            System.out.println(e.getMessage());
 
         } finally {
 
@@ -95,18 +97,20 @@ public class UsuarioDAO {
     }
 
     // =========================================
-    // ACTUALIZAR PERMISO
+    // ACTUALIZAR USUARIO
     // =========================================
     public void actualizarPermiso(
-            int id_permiso,
-            String desc_accion
+            int id_credencial,
+            int id_empleado,
+            String usuario,
+            String contrasenia
     ) {
 
         Connection con = null;
         PreparedStatement ps = null;
 
         String sql =
-                "{CALL sp_ActualizarPermiso(?, ?)}";
+                "{CALL sp_ActualizarCredencial(?, ?, ?, ?)}";
 
         try {
 
@@ -115,20 +119,16 @@ public class UsuarioDAO {
             ps = con.prepareCall(sql);
 
             // ID obligatorio
-            ps.setInt(1, id_permiso);
-            ps.setString(2, desc_accion);
+            ps.setInt(1, id_credencial);
+            ps.setInt(2, id_empleado);
+            ps.setString(3, usuario);
+            ps.setString(4, contrasenia);
 
-
-            SQLWarning warning = ps.getWarnings();
-            while (warning != null) {
-                System.out.println(warning.getMessage());
-                warning = warning.getNextWarning();
-            }
+            ps.execute();
 
         } catch (Exception e) {
 
-            System.out.println("Error al actualizar permiso");
-            e.printStackTrace();
+            System.out.println(e.getMessage());
 
         } finally {
 
@@ -139,16 +139,16 @@ public class UsuarioDAO {
 
 
     // =========================================
-    // BUSCAR PERMISO
+    // BUSCAR USUARIO
     // =========================================
-    public void BuscarPermiso(
+    public void buscarUsuario(
             int id
     ) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM Permiso WHERE id_permiso = ?";
+        String sql = "SELECT * FROM Credencial WHERE id_credencial = ?";
 
         try {
             con = ConexionBD.getConexion();
@@ -163,16 +163,23 @@ public class UsuarioDAO {
                 System.out.println("----------------------------");
 
                 System.out.println("ID: "
-                        + rs.getInt("id_permiso"));
+                        + rs.getInt("id_credencial"));
 
-                System.out.println("Descripcion: "
-                        + rs.getString("desc_accion"));
+                System.out.println("ID de empleado: "
+                        + rs.getInt("id_empleado"));
 
+                System.out.println("Usuario: "
+                        + rs.getString("usuario"));
+
+                System.out.println("Contrasenia: "
+                        + rs.getString("contrasenia"));
             }
+
+            ps.execute();
 
         } catch (Exception e) {
 
-            System.out.println("Error al buscar permiso");
+            System.out.println(e.getMessage());
             e.printStackTrace();
 
         } finally {
