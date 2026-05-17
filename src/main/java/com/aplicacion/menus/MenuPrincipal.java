@@ -37,7 +37,8 @@ public class MenuPrincipal {
 
 
                 case 2:
-
+                    MenuDisenioPlayera MenuDisenioPlayera = new MenuDisenioPlayera();
+                    MenuDisenioPlayera.menu();
 
                     break;
 
