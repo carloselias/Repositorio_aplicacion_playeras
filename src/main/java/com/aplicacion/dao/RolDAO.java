@@ -78,10 +78,15 @@ public class RolDAO {
 
             ps.execute();
 
+            SQLWarning warning = ps.getWarnings();
+            while (warning != null) {
+                System.out.println(warning.getMessage());
+                warning = warning.getNextWarning();
+            }
+
         } catch (Exception e) {
 
             System.out.println(e.getMessage());
-            e.printStackTrace();
 
         } finally {
 
@@ -126,8 +131,7 @@ public class RolDAO {
 
         } catch (Exception e) {
 
-            System.out.println("Error al actualizar rol");
-            e.printStackTrace();
+            System.out.println(e.getMessage());
 
         } finally {
 
