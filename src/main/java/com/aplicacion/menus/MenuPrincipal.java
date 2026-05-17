@@ -55,6 +55,11 @@ public class MenuPrincipal {
 
                     break;
 
+                case 8:
+                    MenuInventario MenuInventario = new MenuInventario();
+                    MenuInventario.menu();
+                    break;
+
                 case 10:
 
                     MenuEnvios menuEnvios = new MenuEnvios();

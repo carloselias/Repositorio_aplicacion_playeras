@@ -85,16 +85,11 @@ public class InventarioMateriaDAO {
             ps.setFloat(4, costo_unitario);
             ps.setInt(5, stock);
 
-            boolean resultado = ps.execute();
 
-            if(!resultado) {
-
-                System.out.println("Materia prima insertada");
-
-            } else {
-
-                System.out.println("No se ejecutó");
-
+            SQLWarning warning = ps.getWarnings();
+            while (warning != null) {
+                System.out.println(warning.getMessage());
+                warning = warning.getNextWarning();
             }
 
         } catch (Exception e) {
@@ -137,14 +132,13 @@ public class InventarioMateriaDAO {
 
             boolean resultado = ps.execute();
 
-            if(!resultado){
-
-                System.out.println("Materia prima actualizada");
-
-            } else {
-
-                System.out.println("No se actualizó");
+            // Capturar mensajes PRINT del SP
+            SQLWarning warning = ps.getWarnings();
+            while (warning != null) {
+                System.out.println(warning.getMessage());
+                warning = warning.getNextWarning();
             }
+
 
         } catch (Exception e) {
 
