@@ -38,6 +38,11 @@ public class MenuProduccion {
                     MenuOrdenProduccion.menu();
                     break;
 
+                case 3:
+                    MenuProduccionLotes MenuProduccionLotes = new MenuProduccionLotes();
+                    MenuProduccionLotes.menu();
+                    break;
+
                 case 0:
 
                     System.out.println("Fin");
