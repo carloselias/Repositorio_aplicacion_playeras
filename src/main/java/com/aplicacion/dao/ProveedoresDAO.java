@@ -22,13 +22,13 @@ public class ProveedoresDAO {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
 
-            System.out.println("\n=== PROVEEDORES REGISTRADOS  ===");
+            System.out.println("\n\n=== PROVEEDORES REGISTRADOS  ===");
 
             while(rs.next()) {
 
                 System.out.println("----------------------------");
 
-                System.out.println("ID: "
+                System.out.println("Codigo proveedor: "
                         + rs.getInt("id_proveedor"));
 
                 System.out.println("Nombre: "
@@ -49,7 +49,7 @@ public class ProveedoresDAO {
 
         } catch (Exception e) {
 
-            System.out.println("Error al proveedores ");
+            System.out.println("Error al obtener datos de proveedores. ");
             e.printStackTrace();
 
         } finally {
@@ -95,7 +95,7 @@ public class ProveedoresDAO {
 
             if(!resultado) {
 
-                System.out.println("Proveedor insertado");
+                System.out.println("Proveedor insertado con exito.");
 
             } else {
 
@@ -105,7 +105,7 @@ public class ProveedoresDAO {
 
         } catch (Exception e) {
 
-            System.out.println("Error al insertar empresa");
+            System.out.println("Error al insertar empresa.");
             e.printStackTrace();
 
         } finally {
