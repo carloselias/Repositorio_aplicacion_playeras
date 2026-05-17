@@ -30,7 +30,7 @@ public class EmpleadosDAO {
                 System.out.println("----------------------------");
 
                 System.out.println("Codigo Empleado: "
-                        + rs.getInt("id_empelado"));
+                        + rs.getInt("id_empleado"));
 
                 System.out.println("Codigo departamento: "
                         + rs.getInt("id_departamento"));
@@ -171,46 +171,47 @@ public class EmpleadosDAO {
                 ps.setInt(2, id_departamento);
             }
 
-            if(telefono == null || telefono.isBlank()){
-                ps.setNull(3, Types.VARCHAR);
+            if(dpi == 0){
+                ps.setNull(3, Types.INTEGER);
             } else {
-                ps.setString(3, telefono);
-            }
-
-            if(email == null || email.isBlank()){
-                ps.setNull(4, Types.VARCHAR);
-            } else {
-                ps.setString(4, email);
-            }
-
-            if(direccion == null || direccion.isBlank()){
-                ps.setNull(5, Types.VARCHAR);
-            } else {
-                ps.setString(5, direccion);
+                ps.setInt(3, dpi);
             }
 
             if(nombres == null || nombres.isBlank()){
-                ps.setNull(6, Types.VARCHAR);
+                ps.setNull(4, Types.VARCHAR);
             } else {
-                ps.setString(6, nombres);
+                ps.setString(4, nombres);
             }
 
             if(apellidos == null || apellidos.isBlank()){
-                ps.setNull(7, Types.VARCHAR);
+                ps.setNull(5, Types.VARCHAR);
             } else {
-                ps.setString(7, apellidos);
+                ps.setString(5, apellidos);
             }
 
             if(puesto == null || puesto.isBlank()){
-                ps.setNull(8, Types.VARCHAR);
+                ps.setNull(6, Types.VARCHAR);
             } else {
-                ps.setString(8, puesto);
+                ps.setString(6, puesto);
             }
 
-            if(dpi == 0){
-                ps.setNull(9, Types.INTEGER);
+            if(direccion == null || direccion.isBlank()){
+                ps.setNull(7, Types.VARCHAR);
             } else {
-                ps.setInt(9, dpi);
+                ps.setString(7, direccion);
+            }
+
+            if(telefono == null || telefono.isBlank()){
+                ps.setNull(8, Types.VARCHAR);
+            } else {
+                ps.setString(8, telefono);
+            }
+
+
+            if(email == null || email.isBlank()){
+                ps.setNull(9, Types.VARCHAR);
+            } else {
+                ps.setString(9, email);
             }
 
             boolean resultado = ps.execute();

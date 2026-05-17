@@ -131,17 +131,16 @@ public class DepartamentosDAO {
             ps.setInt(1, id_departamento);
 
 
-
             if(nombre == null || nombre.isBlank()){
-                ps.setNull(4, Types.VARCHAR);
+                ps.setNull(2, Types.VARCHAR);
             } else {
-                ps.setString(4, nombre);
+                ps.setString(2, nombre);
             }
 
             if(ubicacion == null || ubicacion.isBlank()){
-                ps.setNull(5, Types.VARCHAR);
+                ps.setNull(3, Types.VARCHAR);
             } else {
-                ps.setString(5, ubicacion);
+                ps.setString(3, ubicacion);
             }
 
             boolean resultado = ps.execute();
