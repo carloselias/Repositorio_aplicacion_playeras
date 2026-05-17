@@ -13,19 +13,27 @@ public class MenuClientes {
 
         do {
             System.out.println("\n=== MENU DE CLIENTES ===");
-            System.out.println("1. Insertar Cliente");
-            System.out.println("2. Actualizar Cliente");
-            System.out.println("3. Consultar Cliente");
-            System.out.println("4. Eliminar Cliente");
+            System.out.println("1. Listar clientes");
+            System.out.println("2. Insertar Cliente");
+            System.out.println("3. Actualizar Cliente");
+            System.out.println("4. Consultar Cliente");
+            System.out.println("5. Eliminar Cliente");
             System.out.println("0. Salir");
 
             opcion = Integer.parseInt(sc.nextLine());
 
             switch(opcion) {
+
+                //LISTAR CLIENTE
+                case 1:
+
+                    dao.listarClientes();
+
+                    break;
                 // ==================================
                 // INSERTAR CLIENTE
                 // ==================================
-                case 1:
+                case 2:
 
                     System.out.print("ID cliente: ");
 
@@ -71,7 +79,7 @@ public class MenuClientes {
                 // ==================================
                 // ACTUALIZAR CLIENTE
                 // ==================================
-                case 2:
+                case 3:
 
                     System.out.print("ID cliente: ");
 
@@ -119,7 +127,7 @@ public class MenuClientes {
                 // ==================================
                 // CONSULTAR CLIENTE
                 // ==================================
-                case 3:
+                case 4:
 
                     System.out.print(
                             "ID cliente (ENTER para NULL): "
@@ -152,7 +160,7 @@ public class MenuClientes {
                 // ==================================
                 // ELIMINAR CLIENTE
                 // ==================================
-                case 4:
+                case 5:
 
                     System.out.print("ID cliente: ");
 

@@ -6,9 +6,66 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class ClientesDAO {
+
+
+
+    //LISTAR CLIENTE
+    public void listarClientes() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT * FROM Cliente";
+
+        try {
+            con = ConexionBD.getConexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            System.out.println("\n\n=== CLIENTES REGISTRADOS ===");
+
+            while(rs.next()) {
+
+                System.out.println("----------------------------");
+
+                System.out.println("Codigo cliente: "
+                        + rs.getInt("id_cliente"));
+
+                System.out.println("Codigo tipo cliente: "
+                        + rs.getInt("id_tipo_cliente"));
+
+                System.out.println("Nombre completo: "
+                        + rs.getString("nombre"));
+
+                System.out.println("Telefono: "
+                        + rs.getString("telefono"));
+
+                System.out.println("Correo electronico: "
+                        + rs.getString("email"));
+
+                System.out.println("Direccion: "
+                        + rs.getString("direccion"));
+            }
+
+        } catch (Exception e) {
+
+            System.out.println("Error al obtener datos de ordenes.");
+            e.printStackTrace();
+
+        } finally {
+
+            try { if(rs != null) rs.close(); } catch(Exception e){}
+            try { if(ps != null) ps.close(); } catch(Exception e){}
+            try { if(con != null) con.close(); } catch(Exception e){}
+        }
+    }
+
+
+
+
     // =========================================
-// INSERTAR CLIENTE
-// =========================================
+    // INSERTAR CLIENTE
+    // =========================================
     public void insertarCliente(int idCliente, int idTipoCliente, String nombre, String telefono, String email, String direccion) {
 
         Connection con = null;
@@ -38,7 +95,7 @@ public class ClientesDAO {
             ps.execute();
 
             System.out.println(
-                    "Cliente insertado correctamente"
+                    "Cliente insertado correctamente."
             );
 
         } catch (SQLException e) {
