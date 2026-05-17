@@ -235,7 +235,7 @@ public class MenuEnvios {
 
                 case 0:
 
-                    System.out.println("Fin");
+                    System.out.println("Volviendo a menú principal");
 
                     break;
             }
