@@ -61,7 +61,7 @@ public class ProveedoresDAO {
     }
 
     // =========================================
-    // INSERTAR EMPRESA
+    // INSERTAR PROVEEDOR
     // =========================================
     public void insertarProveedores(
             int id_proveedor,

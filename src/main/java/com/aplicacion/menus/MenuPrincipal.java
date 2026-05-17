@@ -67,10 +67,24 @@ public class MenuPrincipal {
                     MenuInventario.menu();
                     break;
 
+                case 9:
+
+                    MenuProduccion MenuProduccion = new MenuProduccion();
+                    MenuProduccion.menu();
+
+                    break;
+
                 case 10:
 
                     MenuEnvios menuEnvios = new MenuEnvios();
                     menuEnvios.menu();
+
+                    break;
+
+                case 11:
+
+                    MenuEmpleados MenuEmpleados = new MenuEmpleados();
+                    MenuEmpleados.menu();
 
                     break;
 
