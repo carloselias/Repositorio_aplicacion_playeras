@@ -78,12 +78,6 @@ public class RolDAO {
 
             ps.execute();
 
-            SQLWarning warning = ps.getWarnings();
-            while (warning != null) {
-                System.out.println(warning.getMessage());
-                warning = warning.getNextWarning();
-            }
-
         } catch (Exception e) {
 
             System.out.println(e.getMessage());
@@ -122,12 +116,6 @@ public class RolDAO {
             ps.setString(3, descr);
 
             ps.execute();
-
-            SQLWarning warning = ps.getWarnings();
-            while (warning != null) {
-                System.out.println(warning.getMessage());
-                warning = warning.getNextWarning();
-            }
 
         } catch (Exception e) {
 
