@@ -5,42 +5,39 @@ import com.aplicacion.conexion.ConexionBD;
 import javax.print.DocFlavor;
 import java.sql.*;
 
-public class RolDAO {
+public class PermisoDAO {
 
     // =========================================
-    // LISTAR ROLES
+    // LISTAR PERMISOS
     // =========================================
-    public void listarRol() {
+    public void listarPermiso() {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM Rol";
+        String sql = "SELECT * FROM Permiso";
 
         try {
             con = ConexionBD.getConexion();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
 
-            System.out.println("\n=== ROLES REGISTRADOS  ===");
+            System.out.println("\n=== PERMISOS REGISTRADOS  ===");
 
             while(rs.next()) {
 
                 System.out.println("----------------------------");
 
                 System.out.println("ID: "
-                        + rs.getInt("id_rol"));
-
-                System.out.println("Nombre: "
-                        + rs.getString("nombre"));
+                        + rs.getInt("id_permiso"));
 
                 System.out.println("Descripcion: "
-                        + rs.getString("descr"));
+                        + rs.getString("desc_accion"));
             }
 
         } catch (Exception e) {
 
-            System.out.println("Error al listar roles");
+            System.out.println("Error al listar permisos");
             e.printStackTrace();
 
         } finally {
@@ -52,19 +49,18 @@ public class RolDAO {
     }
 
     // =========================================
-    // INSERTAR ROL
+    // INSERTAR PERMISO
     // =========================================
-    public void insertarRol(
-            int id_rol,
-            String nombre,
-            String descr
+    public void insertarPermiso(
+            int id_permiso,
+            String desc_accion
     ) {
 
         Connection con = null;
         PreparedStatement ps = null;
 
         String sql =
-                "{CALL sp_InsertarRol(?, ?, ?)}";
+                "{CALL sp_InsertarPermiso(?, ?)}";
 
         try {
 
@@ -72,9 +68,8 @@ public class RolDAO {
 
             ps = con.prepareCall(sql);
 
-            ps.setInt(1, id_rol);
-            ps.setString(2, nombre);
-            ps.setString(3, descr);
+            ps.setInt(1, id_permiso);
+            ps.setString(2, desc_accion);
 
 
             SQLWarning warning = ps.getWarnings();
@@ -85,7 +80,7 @@ public class RolDAO {
 
         } catch (Exception e) {
 
-            System.out.println("Error al insertar rol");
+            System.out.println("Error al insertar permiso");
             e.printStackTrace();
 
         } finally {
@@ -96,19 +91,18 @@ public class RolDAO {
     }
 
     // =========================================
-    // ACTUALIZAR ROL
+    // ACTUALIZAR PERMISO
     // =========================================
-    public void actualizarRol(
-            int id_rol,
-            String nombre,
-            String descr
+    public void actualizarPermiso(
+            int id_permiso,
+            String desc_accion
     ) {
 
         Connection con = null;
         PreparedStatement ps = null;
 
         String sql =
-                "{CALL sp_ActualizarMateriaInv(?, ?, ?)}";
+                "{CALL sp_ActualizarPermiso(?, ?)}";
 
         try {
 
@@ -117,9 +111,8 @@ public class RolDAO {
             ps = con.prepareCall(sql);
 
             // ID obligatorio
-            ps.setInt(1, id_rol);
-            ps.setString(2, nombre);
-            ps.setString(3, descr);
+            ps.setInt(1, id_permiso);
+            ps.setString(2, desc_accion);
 
 
             SQLWarning warning = ps.getWarnings();
@@ -130,7 +123,7 @@ public class RolDAO {
 
         } catch (Exception e) {
 
-            System.out.println("Error al actualizar rol");
+            System.out.println("Error al actualizar permiso");
             e.printStackTrace();
 
         } finally {
@@ -142,16 +135,16 @@ public class RolDAO {
 
 
     // =========================================
-    // BUSCAR ROL
+    // BUSCAR PERMISO
     // =========================================
-    public void BuscarRol(
+    public void BuscarPermiso(
             int id
     ) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM Rol WHERE id_rol = ?";
+        String sql = "SELECT * FROM Permiso WHERE id_permiso = ?";
 
         try {
             con = ConexionBD.getConexion();
@@ -166,19 +159,16 @@ public class RolDAO {
                 System.out.println("----------------------------");
 
                 System.out.println("ID: "
-                        + rs.getInt("id_rol"));
-
-                System.out.println("Nombre: "
-                        + rs.getString("nombre"));
+                        + rs.getInt("id_permiso"));
 
                 System.out.println("Descripcion: "
-                        + rs.getString("descr"));
+                        + rs.getString("desc_accion"));
 
             }
 
         } catch (Exception e) {
 
-            System.out.println("Error al buscar rol");
+            System.out.println("Error al buscar permiso");
             e.printStackTrace();
 
         } finally {
