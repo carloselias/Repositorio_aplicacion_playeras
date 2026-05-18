@@ -20,7 +20,7 @@ public class MenuProduccion {
             System.out.println("2. Registro de ordenes de produccion");
             System.out.println("3. Registro de producciones (lotes)");
             System.out.println("4. Registros de procesos (fases de cada lote)");
-            System.out.println("5. Gestionar aquinas");
+            System.out.println("5. Maquinas");
             //System.out.println("6. Ver registro de empleados involucrados");
             System.out.println("0. Salir");
 
@@ -46,6 +46,11 @@ public class MenuProduccion {
                 case 4:
                     MenuRegistroProcesos MenuRegistroProcesos = new MenuRegistroProcesos();
                     MenuRegistroProcesos.menu();
+                    break;
+
+                case 5:
+                    MenuMaquinas MenuMaquinas = new MenuMaquinas();
+                    MenuMaquinas.menu();
                     break;
 
                 case 0:
