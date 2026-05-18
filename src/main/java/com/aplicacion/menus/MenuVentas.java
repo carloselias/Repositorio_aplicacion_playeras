@@ -116,7 +116,7 @@ public class MenuVentas {
                 // ==================================
                 case 5:
 
-                    System.out.print("ID factura: ");
+                    System.out.print("Codigo factura: ");
 
                     int idBuscarFactura =
                             Integer.parseInt(sc.nextLine());
@@ -132,7 +132,7 @@ public class MenuVentas {
                 case 6:
 
                     System.out.print(
-                            "ID factura a pagar: "
+                            "Codigo factura a pagar: "
                     );
 
                     int idFacturaPagar =

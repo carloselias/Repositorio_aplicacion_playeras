@@ -57,123 +57,6 @@ public class OrdenProduccionDAO {
     }
 
 
-    // =========================================
-    // INSERTAR ORDEN
-    // =========================================
-    public void insertarOrden(
-            int id_orden,
-            int id_factura,
-            String estado,
-            java.sql.Timestamp fecha_solicitud
-    ) {
-
-        Connection con = null;
-        PreparedStatement ps = null;
-
-        String sql =
-                "{CALL sp_InsertarOrdenProduccion(?, ?, ?, ?)}";
-
-        try {
-
-            con = ConexionBD.getConexion();
-
-            ps = con.prepareCall(sql);
-
-            ps.setInt(1, id_orden);
-            ps.setInt(2, id_factura);
-            ps.setString(3, estado);
-            ps.setTimestamp(4, fecha_solicitud);
-
-            boolean resultado = ps.execute();
-
-            if(!resultado) {
-
-                System.out.println("Orden insertada con exito.");
-
-            } else {
-
-                System.out.println("No se ejecutó");
-
-            }
-
-        } catch (Exception e) {
-
-            System.out.println("Error al insertar orden.");
-            e.printStackTrace();
-
-        } finally {
-
-            try { if(ps != null) ps.close(); } catch(Exception e){}
-            try { if(con != null) con.close(); } catch(Exception e){}
-        }
-    }
-
-
-    // =========================================
-    // ACTUALIZAR ORDEN
-    // =========================================
-    public void actualizarOrden(
-            int id_orden,
-            String id_factura,
-            String estado,
-            String fecha_solicitud
-    ) {
-
-        Connection con = null;
-        PreparedStatement ps = null;
-
-        String sql =
-                "{CALL sp_ActualizarOrdenProduccion(?, ?, ?, ?)}";
-
-        try {
-
-            con = ConexionBD.getConexion();
-
-            ps = con.prepareCall(sql);
-
-            // ID obligatorio
-            ps.setInt(1, id_orden);
-
-            if(id_factura == null || id_factura.isBlank()){
-                ps.setNull(2, Types.INTEGER);
-            } else {
-                ps.setInt(2, Integer.parseInt(id_factura));
-            }
-
-            if(estado == null || estado.isBlank()){
-                ps.setNull(3, Types.VARCHAR);
-            } else {
-                ps.setString(3, estado);
-            }
-
-            if(fecha_solicitud == null || fecha_solicitud.isBlank()){
-                ps.setNull(4, Types.TIMESTAMP);
-            } else {
-                ps.setTimestamp(4, java.sql.Timestamp.valueOf(fecha_solicitud));
-            }
-
-            boolean resultado = ps.execute();
-
-            if(!resultado){
-
-                System.out.println("Orden actualizada");
-
-            } else {
-
-                System.out.println("No se actualizó");
-            }
-
-        } catch (Exception e) {
-
-            System.out.println("Error al actualizar orden");
-            e.printStackTrace();
-
-        } finally {
-
-            try { if(ps != null) ps.close(); } catch(Exception e){}
-            try { if(con != null) con.close(); } catch(Exception e){}
-        }
-    }
 
     // =========================================
     // APROBAR ORDEN
@@ -224,7 +107,7 @@ public class OrdenProduccionDAO {
 
 
     // =========================================
-    // LISTAR ORDENES
+    // LISTAR DETALLE ORDENES
     // =========================================
     public void listarDetalleOrdenes() {
         Connection con = null;
@@ -259,7 +142,7 @@ public class OrdenProduccionDAO {
 
         } catch (Exception e) {
 
-            System.out.println("Error al obtener datos de ordenes.");
+            System.out.println("Error al obtener datos de detalle de ordenes.");
             e.printStackTrace();
 
         } finally {

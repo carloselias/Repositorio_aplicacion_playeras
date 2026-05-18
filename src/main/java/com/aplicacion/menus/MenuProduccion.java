@@ -17,11 +17,11 @@ public class MenuProduccion {
 
             System.out.println("\n=== PRODUCCION ===");
             System.out.println("1. Catalogo procesos");
-            System.out.println("2. Registro de ordenes de produccion (para lote)");
+            System.out.println("2. Registro de ordenes de produccion");
             System.out.println("3. Registro de producciones (lotes)");
             System.out.println("4. Registros de procesos (fases de cada lote)");
-            System.out.println("5. Maquinas");
-            System.out.println("6.Ver registro de empleados involucrados");
+            System.out.println("5. Gestionar aquinas");
+            //System.out.println("6. Ver registro de empleados involucrados");
             System.out.println("0. Salir");
 
             opcion = Integer.parseInt(sc.nextLine());
@@ -41,6 +41,11 @@ public class MenuProduccion {
                 case 3:
                     MenuProduccionLotes MenuProduccionLotes = new MenuProduccionLotes();
                     MenuProduccionLotes.menu();
+                    break;
+
+                case 4:
+                    MenuRegistroProcesos MenuRegistroProcesos = new MenuRegistroProcesos();
+                    MenuRegistroProcesos.menu();
                     break;
 
                 case 0:
