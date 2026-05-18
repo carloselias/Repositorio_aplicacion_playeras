@@ -20,6 +20,7 @@ public class MenuVentas {
             System.out.println("3. Buscar Detalle Factura");
             System.out.println("4. Listar Facturas");
             System.out.println("5. Buscar Facturas");
+            System.out.println("6. Pagar factura");
             System.out.println("0. Salir");
 
             opcion = Integer.parseInt(sc.nextLine());
@@ -122,6 +123,23 @@ public class MenuVentas {
 
                     dao.buscarFactura(
                             idBuscarFactura
+                    );
+
+                    break;
+                // ==================================
+                // PAGAR FACTURA
+                // ==================================
+                case 6:
+
+                    System.out.print(
+                            "ID factura a pagar: "
+                    );
+
+                    int idFacturaPagar =
+                            Integer.parseInt(sc.nextLine());
+
+                    dao.pagarFactura(
+                            idFacturaPagar
                     );
 
                     break;

@@ -479,4 +479,49 @@ public class VentasDAO {
             } catch(Exception e){}
         }
     }
+
+    // =========================================
+    // PAGAR FACTURA
+    // =========================================
+    public void pagarFactura(int idFactura) {
+
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        String sql =
+                "{CALL sp_PagarFactura(?)}";
+
+        try {
+
+            con = ConexionBD.getConexion();
+
+            ps = con.prepareCall(sql);
+
+            ps.setInt(1, idFactura);
+
+            ps.execute();
+
+            System.out.println(
+                    "Factura pagada correctamente"
+            );
+
+        } catch (SQLException e) {
+
+            System.out.println(
+                    "Error: " + e.getMessage()
+            );
+
+        } finally {
+
+            try {
+                if(ps != null)
+                    ps.close();
+            } catch(Exception e){}
+
+            try {
+                if(con != null)
+                    con.close();
+            } catch(Exception e){}
+        }
+    }
 }
