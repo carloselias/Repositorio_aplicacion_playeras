@@ -39,7 +39,7 @@ public class OrdenProduccionDAO {
                         + rs.getString("estado"));
 
                 System.out.println("Fecha solicitud: "
-                        + rs.getInt("fecha_solicitud"));
+                        + rs.getTimestamp("fecha_solicitud"));
             }
 
         } catch (Exception e) {
