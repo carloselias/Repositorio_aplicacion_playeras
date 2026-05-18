@@ -221,4 +221,53 @@ public class OrdenProduccionDAO {
         }
     }
 
+
+
+    // =========================================
+    // LISTAR ORDENES
+    // =========================================
+    public void listarDetalleOrdenes() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT * FROM Detalle_orden";
+
+        try {
+            con = ConexionBD.getConexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            System.out.println("\n\n=== ORDENES DE PRODUCCION REGISTRADAS ===");
+
+            while(rs.next()) {
+
+                System.out.println("----------------------------");
+
+                System.out.println("Codigo detalle orden: "
+                        + rs.getInt("id_detalle_orden"));
+
+                System.out.println("Codigo orden produccion: "
+                        + rs.getInt("id_orden_produccion"));
+
+                System.out.println("Codigo del producto: "
+                        + rs.getString("id_producto"));
+
+                System.out.println("Cantidad del producto: "
+                        + rs.getTimestamp("cantidad"));
+            }
+
+        } catch (Exception e) {
+
+            System.out.println("Error al obtener datos de ordenes.");
+            e.printStackTrace();
+
+        } finally {
+
+            try { if(rs != null) rs.close(); } catch(Exception e){}
+            try { if(ps != null) ps.close(); } catch(Exception e){}
+            try { if(con != null) con.close(); } catch(Exception e){}
+        }
+    }
+
 }

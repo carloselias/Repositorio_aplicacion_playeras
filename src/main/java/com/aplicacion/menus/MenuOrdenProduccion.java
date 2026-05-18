@@ -17,10 +17,13 @@ public class MenuOrdenProduccion {
         do {
 
             System.out.println("\n=== ORDENES DE PRODUCCION ===");
+            System.out.println("ORDENES");
             System.out.println("1. Listar ordenes");
             System.out.println("2. Agregar orden");
             System.out.println("3. Aprobar orden");
             System.out.println("4. Modificar orden");
+            System.out.println("\nDETALLE ORDENES");
+            System.out.println("5. Listar ordenes");
             System.out.println("0. Salir");
 
             opcion = Integer.parseInt(sc.nextLine());

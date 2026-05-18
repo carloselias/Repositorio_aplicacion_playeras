@@ -18,9 +18,7 @@ public class MenuProduccionLotes {
 
             System.out.println("\n=== LOTE DE PRODUCCION ===");
             System.out.println("1. Listar lotes de produccion");
-            System.out.println("2. Agregar lotes de produccion");
-            System.out.println("3. Modificar lotes de produccion");
-            System.out.println("4. Marcar produccion como terminada");
+            System.out.println("2. Marcar produccion como terminada");
             System.out.println("0. Salir");
 
             opcion = Integer.parseInt(sc.nextLine());
@@ -39,7 +37,7 @@ public class MenuProduccionLotes {
                 // ==================================
                 // INSERTAR PRODUCCION
                 // ==================================
-                case 2:
+                case 222:
 
                     System.out.print("Codigo produccion: ");
                     int id = Integer.parseInt(sc.nextLine());
@@ -68,7 +66,7 @@ public class MenuProduccionLotes {
                 // ==================================
                 // ACTUALIZAR PRODUCCION
                 // ==================================
-                case 3:
+                case 333:
 
                     System.out.print("Codigo produccion a actualizar: ");
                     int idActualizar;
@@ -106,7 +104,7 @@ public class MenuProduccionLotes {
                 // ==================================
                 // TERMINAR PRODUCCION
                 // ==================================
-                case 4:
+                case 2:
 
                     System.out.print("Codigo produccion a terminar: ");
                     int idTerminar;
