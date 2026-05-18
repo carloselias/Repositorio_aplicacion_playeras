@@ -480,7 +480,9 @@ public class VentasDAO {
         }
     }
 
-    //APROBAR FACTURA
+    // =========================================
+    // PAGAR FACTURA
+    // =========================================
     public void pagarFactura(int idFactura) {
 
         Connection con = null;
@@ -511,9 +513,15 @@ public class VentasDAO {
 
         } finally {
 
-            try { if(ps != null) ps.close(); } catch(Exception e){}
-            try { if(con != null) con.close(); } catch(Exception e){}
+            try {
+                if(ps != null)
+                    ps.close();
+            } catch(Exception e){}
+
+            try {
+                if(con != null)
+                    con.close();
+            } catch(Exception e){}
         }
     }
-
 }
