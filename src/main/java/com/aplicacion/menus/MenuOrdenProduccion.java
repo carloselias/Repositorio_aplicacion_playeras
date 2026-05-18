@@ -2,7 +2,6 @@ package com.aplicacion.menus;
 
 import com.aplicacion.dao.OrdenProduccionDAO;
 
-import java.sql.Timestamp;
 import java.util.Scanner;
 
 public class MenuOrdenProduccion {
@@ -21,7 +20,7 @@ public class MenuOrdenProduccion {
             System.out.println("1. Listar ordenes");
             System.out.println("2. Autorizar orden (generar produccion)");
             System.out.println("\nDETALLE ORDENES");
-            System.out.println("5. Listar detalle de ordenes");
+            System.out.println("3. Listar detalle de ordenes");
             System.out.println("0. Salir");
 
             opcion = Integer.parseInt(sc.nextLine());
@@ -42,6 +41,11 @@ public class MenuOrdenProduccion {
                     int id_aprob = Integer.parseInt(sc.nextLine());
                     dao.aprobarOrden(id_aprob);
 
+                    break;
+
+                case 3:
+
+                    dao.listarDetalleOrdenes();
                     break;
 
                 case 0:

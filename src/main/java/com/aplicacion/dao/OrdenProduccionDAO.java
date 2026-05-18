@@ -5,7 +5,6 @@ import com.aplicacion.conexion.ConexionBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Types;
 
 public class OrdenProduccionDAO {
 
@@ -40,7 +39,7 @@ public class OrdenProduccionDAO {
                         + rs.getString("estado"));
 
                 System.out.println("Fecha solicitud: "
-                        + rs.getTimestamp("fecha_solicitud"));
+                        + rs.getInt("fecha_solicitud"));
             }
 
         } catch (Exception e) {
@@ -137,7 +136,7 @@ public class OrdenProduccionDAO {
                         + rs.getString("id_producto"));
 
                 System.out.println("Cantidad del producto: "
-                        + rs.getTimestamp("cantidad"));
+                        + rs.getInt("cantidad"));
             }
 
         } catch (Exception e) {
