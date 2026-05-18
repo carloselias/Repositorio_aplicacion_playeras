@@ -80,6 +80,8 @@ public class InventarioProductoDAO {
             ps.setInt(3, id_almacen);
             ps.setInt(4, stock);
 
+            ps.execute();
+
             SQLWarning warning = ps.getWarnings();
             while (warning != null) {
                 System.out.println(warning.getMessage());

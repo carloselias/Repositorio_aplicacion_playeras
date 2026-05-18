@@ -85,6 +85,7 @@ public class InventarioMateriaDAO {
             ps.setFloat(4, costo_unitario);
             ps.setInt(5, stock);
 
+            ps.execute();
 
             SQLWarning warning = ps.getWarnings();
             while (warning != null) {
@@ -130,7 +131,7 @@ public class InventarioMateriaDAO {
             ps.setFloat(2, costo_unitario);
             ps.setInt(3, stock);
 
-            boolean resultado = ps.execute();
+            ps.execute();
 
             // Capturar mensajes PRINT del SP
             SQLWarning warning = ps.getWarnings();
