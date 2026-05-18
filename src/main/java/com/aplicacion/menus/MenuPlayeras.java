@@ -14,24 +14,14 @@ public class MenuPlayeras {
         do {
 
             System.out.println("\n=== MENU DE PLAYERAS ===");
-            System.out.println("1. Listar Talla");
-            System.out.println("2. Listar Color");
-            System.out.println("3. Listar Manga");
-            System.out.println("4. Listar Cuello");
-            System.out.println("5. Listar Corte");
-            System.out.println("6. Listar Playeras");
-            System.out.println("7. Insertar Playeras");
-            System.out.println("8. Insertar Talla");
-            System.out.println("9. Insertar Color");
-            System.out.println("10. Insertar Manga");
-            System.out.println("11. Insertar Cuello");
-            System.out.println("12. Insertar Corte");
-            System.out.println("13. Actualizar Playeras");
-            System.out.println("14. Actualizar Talla");
-            System.out.println("15. Actualizar Color");
-            System.out.println("16. Actualizar Manga");
-            System.out.println("16. Actualizar Cuello");
-            System.out.println("18. Actualizar Corte");
+            System.out.println("\n-- LISTAR --          -- INSERTAR --          -- ACTUALIZAR --");
+            System.out.println("1. Listar Talla         7. Insertar Playeras    13. Actualizar Playeras");
+            System.out.println("2. Listar Color         8. Insertar Talla       14. Actualizar Talla");
+            System.out.println("3. Listar Manga         9. Insertar Color       15. Actualizar Color");
+            System.out.println("4. Listar Cuello        10. Insertar Manga      16. Actualizar Manga");
+            System.out.println("5. Listar Corte         11. Insertar Cuello     17. Actualizar Cuello");
+            System.out.println("6. Listar Playeras      12. Insertar Corte      18. Actualizar Corte");
+            System.out.println("\n-- SALIR --");
             System.out.println("0. Salir");
 
             opcion = Integer.parseInt(sc.nextLine());
