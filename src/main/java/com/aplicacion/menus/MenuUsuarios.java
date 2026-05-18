@@ -64,7 +64,7 @@ public class MenuUsuarios {
                                 System.out.print("Usuario: ");
                                 String usuario = sc.nextLine();
 
-                                System.out.print("Contrasenia: ");
+                                System.out.print("Contraseña: ");
                                 String contrasenia = sc.nextLine();
 
                                 daoUsuario.insertarUsuario(
@@ -87,7 +87,7 @@ public class MenuUsuarios {
                                 System.out.print("Usuario: ");
                                 String nuevousuario = sc.nextLine();
 
-                                System.out.print("Contrasenia: ");
+                                System.out.print("Contraseña: ");
                                 String nuevocontrasenia = sc.nextLine();
 
                                 daoUsuario.actualizarPermiso(

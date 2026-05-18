@@ -38,7 +38,7 @@ public class UsuarioDAO {
                 System.out.println("Usuario: "
                         + rs.getString("usuario"));
 
-                System.out.println("Contrasenia: "
+                System.out.println("Contraseña: "
                         + rs.getString("contrasenia"));
             }
 
@@ -171,7 +171,7 @@ public class UsuarioDAO {
                 System.out.println("Usuario: "
                         + rs.getString("usuario"));
 
-                System.out.println("Contrasenia: "
+                System.out.println("Contraseña: "
                         + rs.getString("contrasenia"));
             }
 
