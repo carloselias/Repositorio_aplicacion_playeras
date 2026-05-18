@@ -13,7 +13,7 @@ public class ConexionBD {
                     + "trustServerCertificate=true;";
 
     private static final String USER = "sa";
-    private static final String PASSWORD = "umg2026";
+    private static final String PASSWORD = "HolaKoishi";
 
     public static Connection getConexion() {
 

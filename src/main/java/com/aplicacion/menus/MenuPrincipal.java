@@ -35,6 +35,11 @@ public class MenuPrincipal {
 
             switch(opcion){
 
+                case 1:
+                    MenuPlayeras MenuPlayeras = new MenuPlayeras();
+                    MenuPlayeras.menu();
+
+                    break;
 
                 case 2:
                     MenuDisenioPlayera MenuDisenioPlayera = new MenuDisenioPlayera();
