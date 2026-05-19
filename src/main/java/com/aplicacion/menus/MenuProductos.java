@@ -11,7 +11,7 @@ public class MenuProductos {
     public void menu() {
         int opcion;
         do {
-            System.out.println("\n=== MENU DE ENVIOS ===");
+            System.out.println("\n=== MENU DE PRODUCTOS ===");
             System.out.println("1. Insertar producto");
             System.out.println("2. Consultar producto");
             System.out.println("3. Actualizar producto");
