@@ -48,6 +48,11 @@ public class MenuProduccion {
                     MenuRegistroProcesos.menu();
                     break;
 
+                case 5:
+                    MenuMaquinas MenuMaquinas = new MenuMaquinas();
+                    MenuMaquinas.menu();
+                    break;
+
                 case 0:
 
                     System.out.println("Fin");
