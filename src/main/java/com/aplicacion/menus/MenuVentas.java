@@ -23,7 +23,7 @@ public class MenuVentas {
             System.out.println("6. Pagar factura");
             System.out.println("0. Salir");
 
-            opcion = Integer.parseInt(sc.nextLine());
+            opcion = leerEntero();
 
             switch(opcion) {
                 // ==================================
@@ -148,8 +148,27 @@ public class MenuVentas {
                     System.out.println("Volviendo a menú principal");
 
                     break;
+
+                default:
+                    System.out.println("\nOpcion invalida.");
+                    break;
             }
 
         } while(opcion != 0);
+    }
+
+    private int leerEntero(){
+
+        while(!sc.hasNextInt()){
+
+            System.out.println("Ingrese un numero valido");
+            sc.next();
+
+        }
+
+        int numero = sc.nextInt();
+        sc.nextLine();
+
+        return numero;
     }
 }

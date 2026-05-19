@@ -18,16 +18,14 @@ public class MenuPrincipal {
             System.out.println("1.  Playeras");
             System.out.println("2.  Diseños");
             System.out.println("3.  Productos");
-            System.out.println("4.  Materia prima");
-            System.out.println("5.  Clientes");
-            System.out.println("6.  Compra");
-            System.out.println("7.  Venta");
-            System.out.println("8.  Inventario");
-            System.out.println("9.  Producción");
-            System.out.println("10. Envíos");
-            System.out.println("11. Empleados");
-            System.out.println("12. Usuarios");
-            //System.out.println("13. Auditoria Usuarios");
+            System.out.println("4.  Clientes");
+            System.out.println("5.  Compra");
+            System.out.println("6.  Venta");
+            System.out.println("7.  Inventario");
+            System.out.println("8.  Producción");
+            System.out.println("9. Envíos");
+            System.out.println("10. Empleados");
+            System.out.println("11. Usuarios");
             System.out.println("0.  Salir");
             System.out.print("Opcion: ");
 
@@ -113,7 +111,8 @@ public class MenuPrincipal {
 
                 default:
 
-                    System.out.println("Opcion invalida");
+                    System.out.println("\nOpcion invalida.");
+                    break;
             }
 
         } while(opcion != 0);
